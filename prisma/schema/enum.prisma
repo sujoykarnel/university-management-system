@@ -1,0 +1,45 @@
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  INSTRUCTOR
+  STUDENT
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum AuthProvider {
+  GOOGLE
+  CREDENTIAL
+}
+
+enum AdmissionStatus {
+  PENDING
+  CONFIRMED
+  CANCELED
+  ONGOING
+  CMPOLETED
+}
+
+enum PaymentStatus {
+  UNPAID
+  PAID
+  FAILED
+  CANCELED
+  REFUNDED
+}
+
+enum InstructorVerificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
