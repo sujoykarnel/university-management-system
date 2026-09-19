@@ -19,6 +19,7 @@ import { AppError } from "../../utils/AppError";
 import { jwtUtils } from "../../utils/jwt";
 import type {
 	IGoogleLoginPayload,
+	ILoginUserPayload,
 	IRegisterStudentPayload,
 	IVerifyEmailPayload,
 } from "./auth.interface";
@@ -96,6 +97,7 @@ const registerStudent = async (payload: IRegisterStudentPayload) => {
 		html,
 	});
 };
+
 const verifyStudentEmail = async (payload: IVerifyEmailPayload) => {
 	const otp = payload.otp;
 	const email = payload.email.trim().toLowerCase();
@@ -207,7 +209,65 @@ const verifyStudentEmail = async (payload: IVerifyEmailPayload) => {
 		refreshToken,
 	};
 };
-const loginUser = async () => {};
+const loginUser = async (payload: ILoginUserPayload) => {
+	const { password } = payload;
+	const email = payload.email.trim().toLowerCase();
+
+	const user = await prisma.user.findUnique({
+		where: { email },
+	});
+
+	if (!user) {
+		throw new AppError(httpStatus.NOT_FOUND, "User Not Found");
+	}
+
+	if (user.status === UserStatus.BLOCKED) {
+		throw new AppError(httpStatus.FORBIDDEN, "User Is Blocked");
+	}
+
+	if (user.isDeleted || user.status === UserStatus.DELETED) {
+		throw new AppError(httpStatus.NOT_FOUND, "User Is Deleted");
+	}
+
+	if (user.password === null && user.googleId !== null) {
+		throw new AppError(
+			httpStatus.CONFLICT,
+			"User Already Has Account Registered With Google. Try To Login With Google",
+		);
+	}
+
+	const isPasswordMatched = await bcrypt.compare(
+		password,
+		user.password as string,
+	);
+
+	if (!isPasswordMatched) {
+		throw new AppError(httpStatus.UNAUTHORIZED, "Invalid Credentials");
+	}
+
+	const jwtPayload = {
+		userId: user.id,
+		name: user.name,
+		email: user.email,
+		role: user.role,
+	};
+	const accessToken = jwtUtils.createToken(
+		jwtPayload,
+		config.jwt_access_secret,
+		config.jwt_access_expires_in as SignOptions,
+	);
+
+	const refreshToken = jwtUtils.createToken(
+		jwtPayload,
+		config.jwt_refresh_secret,
+		config.jwt_refresh_expires_in as SignOptions,
+	);
+
+	return {
+		accessToken,
+		refreshToken,
+	};
+};
 const getMe = async () => {};
 const refreshToken = async () => {};
 
@@ -360,16 +420,11 @@ const googleLogin = async (payload: IGoogleLoginPayload) => {
 	};
 };
 
-const forgotPassword = async () => {};
-const resetPassword = async () => {};
-
 export const AuthService = {
-	googleLogin,
 	registerStudent,
 	verifyStudentEmail,
 	loginUser,
 	getMe,
+	googleLogin,
 	refreshToken,
-	forgotPassword,
-	resetPassword,
 };

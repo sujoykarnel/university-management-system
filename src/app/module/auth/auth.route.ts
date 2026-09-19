@@ -17,6 +17,8 @@ router.post(
 	AuthController.verifyStudentEmail,
 );
 
+router.post('/login', AuthController.loginUser)
+
 router.post("/google", AuthController.googleLogin);
 
 export const AuthRouters = router;
