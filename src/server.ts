@@ -1,24 +1,25 @@
 import app from "./app";
 import config from "./app/config";
 import { prisma } from "./app/lib/prisma";
+import { redisClient } from "./app/lib/radis";
 
 const PORT = config.port;
 
 async function main() {
 	try {
-    // database
+		// database
 		await prisma.$connect();
 		console.log("Database Connected Successfully");
 
-    // redis
+		// redis
+		await redisClient.connect();
+		console.log("Redis Connected Successfully");
 
+		// mail transporter
 
-    // mail transporter
+		// init seeding
 
-    // init seeding
-
-
-    // delete unverified
+		// delete unverified
 
 		app.listen(PORT, () => {
 			console.log(`Server is Running on Port ${PORT}`);

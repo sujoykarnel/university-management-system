@@ -4,10 +4,50 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { AuthService } from "./auth.service";
 
-const registerStudent = catchAsync(async (req: Request, res: Response) => {});
-const verifyStudentEmail = catchAsync(
-	async (req: Request, res: Response) => {},
-);
+const registerStudent = catchAsync(async (req: Request, res: Response) => {
+	const payload = req.body;
+
+	await AuthService.registerStudent(payload);
+
+	sendResponse(res, {
+		statusCode: httpStatus.CREATED,
+		success: true,
+		message: "Verification OTP Sent",
+		data: null,
+	});
+});
+const verifyStudentEmail = catchAsync(async (req: Request, res: Response) => {
+	const payload = req.body;
+
+	const result = await AuthService.verifyStudentEmail(payload);
+
+	const { accessToken, refreshToken, user, student } = result;
+	res.cookie("accessToken", accessToken, {
+		httpOnly: true,
+		secure: false,
+		sameSite: "none",
+		maxAge: 1000 * 60 * 60 * 24, // 1 day
+	});
+
+	res.cookie("refreshToken", refreshToken, {
+		httpOnly: true,
+		secure: false,
+		sameSite: "none",
+		maxAge: 1000 * 60 * 60 * 24 * 7, // 7 day
+	});
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "User logged in successfully",
+		data: {
+			accessToken,
+			refreshToken,
+			user,
+			student,
+		},
+	});
+});
 const loginUser = catchAsync(async (req: Request, res: Response) => {});
 const getMe = catchAsync(async (req: Request, res: Response) => {});
 const refreshToken = catchAsync(async (req: Request, res: Response) => {});
