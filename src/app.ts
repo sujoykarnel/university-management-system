@@ -8,6 +8,7 @@ import express, {
 import httpStatus from "http-status";
 import config from "./app/config";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
+import { notFound } from "./app/middleware/notFound";
 import { AuthRouters } from "./app/module/auth/auth.route";
 
 const app: Application = express();
@@ -39,7 +40,7 @@ app.get("/", async (req: Request, res: Response) => {
 // global error handler
 app.use(globalErrorHandler);
 
-
 // not found
+app.use(notFound);
 
 export default app;
