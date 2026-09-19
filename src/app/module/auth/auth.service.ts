@@ -3,7 +3,7 @@ import crypto from "crypto";
 import ejs from "ejs";
 import type { TokenPayload } from "google-auth-library";
 import httpStatus from "http-status";
-import type { SignOptions } from "jsonwebtoken";
+import type { JwtPayload, SignOptions } from "jsonwebtoken";
 import path from "path";
 import {
 	AuthProvider,
@@ -21,6 +21,7 @@ import type {
 	IGoogleLoginPayload,
 	ILoginUserPayload,
 	IRegisterStudentPayload,
+	IRequestUser,
 	IVerifyEmailPayload,
 } from "./auth.interface";
 
@@ -268,8 +269,73 @@ const loginUser = async (payload: ILoginUserPayload) => {
 		refreshToken,
 	};
 };
-const getMe = async () => {};
-const refreshToken = async () => {};
+const getMe = async (user: IRequestUser) => {
+	const isUserExisting = await prisma.user.findUnique({
+		where: {
+			id: user.userId,
+		},
+		include: {
+			student: true,
+		},
+		omit: {
+			password: true,
+		},
+	});
+
+	if (!isUserExisting) {
+		throw new AppError(httpStatus.NOT_FOUND, "User Not Found");
+	}
+	return isUserExisting;
+};
+
+const refreshToken = async (token: string) => {
+	const verifiedRefreshToken = jwtUtils.verifyToken(
+		token,
+		config.jwt_refresh_secret,
+	);
+
+	if (!verifiedRefreshToken.success || !verifiedRefreshToken.data) {
+		throw new AppError(httpStatus.UNAUTHORIZED,
+			config.node_env === "development"
+				? verifiedRefreshToken.error
+				: "Invalid refresh token",
+		);
+	}
+
+	const data = verifiedRefreshToken.data as JwtPayload;
+
+	const user = await prisma.user.findUnique({
+		where: { id: data.userId },
+	});
+
+	if (!user || user.isDeleted || user.status !== UserStatus.ACTIVE) {
+		throw new AppError(httpStatus.NOT_FOUND,"User is inactive or not found");
+	}
+
+	const jwtPayload = {
+		userId: user.id,
+		name: user.name,
+		email: user.email,
+		role: user.role,
+	};
+
+	const accessToken = jwtUtils.createToken(
+		jwtPayload,
+		config.jwt_access_secret,
+		config.jwt_access_expires_in as SignOptions,
+	);
+
+	const refreshToken = jwtUtils.createToken(
+		jwtPayload,
+		config.jwt_refresh_secret,
+		config.jwt_refresh_expires_in as SignOptions,
+	);
+
+	return {
+		accessToken,
+		refreshToken,
+	};
+};
 
 const googleLogin = async (payload: IGoogleLoginPayload) => {
 	let googleIdTokenPayload: TokenPayload | null | undefined = null;
@@ -425,6 +491,6 @@ export const AuthService = {
 	verifyStudentEmail,
 	loginUser,
 	getMe,
-	googleLogin,
 	refreshToken,
+	googleLogin,
 };
