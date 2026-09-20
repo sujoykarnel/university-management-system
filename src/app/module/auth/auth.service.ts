@@ -21,7 +21,6 @@ import type {
 	IGoogleLoginPayload,
 	ILoginUserPayload,
 	IRegisterStudentPayload,
-	IRequestUser,
 	IVerifyEmailPayload,
 } from "./auth.interface";
 
@@ -210,6 +209,7 @@ const verifyStudentEmail = async (payload: IVerifyEmailPayload) => {
 		refreshToken,
 	};
 };
+
 const loginUser = async (payload: ILoginUserPayload) => {
 	const { password } = payload;
 	const email = payload.email.trim().toLowerCase();
@@ -269,24 +269,6 @@ const loginUser = async (payload: ILoginUserPayload) => {
 		refreshToken,
 	};
 };
-const getMe = async (user: IRequestUser) => {
-	const isUserExisting = await prisma.user.findUnique({
-		where: {
-			id: user.userId,
-		},
-		include: {
-			student: true,
-		},
-		omit: {
-			password: true,
-		},
-	});
-
-	if (!isUserExisting) {
-		throw new AppError(httpStatus.NOT_FOUND, "User Not Found");
-	}
-	return isUserExisting;
-};
 
 const refreshToken = async (token: string) => {
 	const verifiedRefreshToken = jwtUtils.verifyToken(
@@ -295,7 +277,8 @@ const refreshToken = async (token: string) => {
 	);
 
 	if (!verifiedRefreshToken.success || !verifiedRefreshToken.data) {
-		throw new AppError(httpStatus.UNAUTHORIZED,
+		throw new AppError(
+			httpStatus.UNAUTHORIZED,
 			config.node_env === "development"
 				? verifiedRefreshToken.error
 				: "Invalid refresh token",
@@ -309,7 +292,7 @@ const refreshToken = async (token: string) => {
 	});
 
 	if (!user || user.isDeleted || user.status !== UserStatus.ACTIVE) {
-		throw new AppError(httpStatus.NOT_FOUND,"User is inactive or not found");
+		throw new AppError(httpStatus.NOT_FOUND, "User is inactive or not found");
 	}
 
 	const jwtPayload = {
@@ -490,7 +473,6 @@ export const AuthService = {
 	registerStudent,
 	verifyStudentEmail,
 	loginUser,
-	getMe,
 	refreshToken,
 	googleLogin,
 };
