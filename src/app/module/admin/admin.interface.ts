@@ -4,9 +4,10 @@ export interface IUniversityPayload {
 }
 
 export interface IDepartmentPayload {
-	name: string;
-	code: string;
-}
+		name: string;
+		code: string;
+		universityId: string;
+	}
 
 export interface IProgramPayload {
 	name: string;

@@ -14,4 +14,11 @@ router.post(
 	AdminController.createUniversity,
 );
 
+router.post(
+	"/department",
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	validateRequest(AdminValidation.DepartmentCreateZodSchema),
+	AdminController.createDepartment,
+);
+
 export const AdminRoutes = router;

@@ -227,11 +227,12 @@ export type DepartmentOrderByWithRelationInput = {
 
 export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  name?: string
-  code?: string
+  unique_code_universityId?: Prisma.DepartmentUnique_code_universityIdCompoundUniqueInput
   AND?: Prisma.DepartmentWhereInput | Prisma.DepartmentWhereInput[]
   OR?: Prisma.DepartmentWhereInput[]
   NOT?: Prisma.DepartmentWhereInput | Prisma.DepartmentWhereInput[]
+  name?: Prisma.StringFilter<"Department"> | string
+  code?: Prisma.StringFilter<"Department"> | string
   isDelete?: Prisma.BoolFilter<"Department"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
   universityId?: Prisma.StringFilter<"Department"> | string
@@ -240,7 +241,7 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   university?: Prisma.XOR<Prisma.UniversityScalarRelationFilter, Prisma.UniversityWhereInput>
   instructors?: Prisma.InstructorListRelationFilter
   programs?: Prisma.ProgramListRelationFilter
-}, "id" | "name" | "code">
+}, "id" | "unique_code_universityId">
 
 export type DepartmentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -352,6 +353,11 @@ export type DepartmentUncheckedUpdateManyInput = {
   universityId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type DepartmentUnique_code_universityIdCompoundUniqueInput = {
+  code: string
+  universityId: string
 }
 
 export type DepartmentCountOrderByAggregateInput = {

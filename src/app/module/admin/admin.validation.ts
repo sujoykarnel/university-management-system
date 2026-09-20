@@ -8,6 +8,7 @@ const UniversityCreateZodSchema = z.object({
 const DepartmentCreateZodSchema = z.object({
 	name: z.string().trim().min(2, "Name Is Required"),
 	code: z.string().min(2).max(10),
+	universityId: z.string("Not a string..."),
 });
 const ProgramCreateZodSchema = z.object({
 	name: z.string().trim().min(2, "Name Is Required"),

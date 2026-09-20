@@ -17,9 +17,26 @@ const createUniversity = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
-const createDepartment = catchAsync(async (req: Request, res: Response) => {});
+const createDepartment = catchAsync(async (req: Request, res: Response) => {
+  const payload = req.body
+
+  const result = await AdminService.createDepartment(payload)
+
+  sendResponse(res, {
+			statusCode: httpStatus.OK,
+			success: true,
+			message: "Department Created successfully",
+			data: result,
+		});
+});
+
+const createProgram = catchAsync(async (req: Request, res: Response) => {});
+
+const createCourse = catchAsync(async (req: Request, res: Response) => {});
 
 export const AdminController = {
 	createUniversity,
 	createDepartment,
+  createProgram,
+  createCourse
 };

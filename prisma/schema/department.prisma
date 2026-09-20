@@ -1,7 +1,7 @@
 model Department {
   id String @id @default(uuid())
-  name String @unique
-  code String @unique
+  name String
+  code String
 
   isDelete Boolean @default(false)
   deletedAt DateTime?
@@ -17,6 +17,7 @@ model Department {
   programs Program[]
 
 
+  @@unique([code,universityId], name: "unique_code_universityId")
   @@index([code], name:"idx_department_code")
   @@map("departments")
 }
