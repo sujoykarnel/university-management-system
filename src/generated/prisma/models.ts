@@ -8,7 +8,13 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Course'
+export type * from './models/Department'
+export type * from './models/Enrollment'
 export type * from './models/Instructor'
+export type * from './models/Program'
+export type * from './models/Semester'
 export type * from './models/Student'
+export type * from './models/University'
 export type * from './models/User'
 export type * from './commonInputTypes'

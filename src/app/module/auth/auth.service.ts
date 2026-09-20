@@ -154,7 +154,7 @@ const verifyStudentEmail = async (payload: IVerifyEmailPayload) => {
 				create: {
 					name: studentPayload.name,
 					email: studentPayload.email,
-					contactNumber: studentPayload?.student?.contactNumber || "",
+					
 				},
 			},
 		},

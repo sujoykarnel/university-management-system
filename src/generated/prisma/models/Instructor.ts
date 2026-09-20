@@ -28,39 +28,39 @@ export type InstructorMinAggregateOutputType = {
   id: string | null
   name: string | null
   email: string | null
-  contactNumber: string | null
   address: string | null
+  userId: string | null
+  departmentId: string | null
   isDeleted: boolean | null
   deletedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
-  userId: string | null
 }
 
 export type InstructorMaxAggregateOutputType = {
   id: string | null
   name: string | null
   email: string | null
-  contactNumber: string | null
   address: string | null
+  userId: string | null
+  departmentId: string | null
   isDeleted: boolean | null
   deletedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
-  userId: string | null
 }
 
 export type InstructorCountAggregateOutputType = {
   id: number
   name: number
   email: number
-  contactNumber: number
   address: number
+  userId: number
+  departmentId: number
   isDeleted: number
   deletedAt: number
   createdAt: number
   updatedAt: number
-  userId: number
   _all: number
 }
 
@@ -69,39 +69,39 @@ export type InstructorMinAggregateInputType = {
   id?: true
   name?: true
   email?: true
-  contactNumber?: true
   address?: true
+  userId?: true
+  departmentId?: true
   isDeleted?: true
   deletedAt?: true
   createdAt?: true
   updatedAt?: true
-  userId?: true
 }
 
 export type InstructorMaxAggregateInputType = {
   id?: true
   name?: true
   email?: true
-  contactNumber?: true
   address?: true
+  userId?: true
+  departmentId?: true
   isDeleted?: true
   deletedAt?: true
   createdAt?: true
   updatedAt?: true
-  userId?: true
 }
 
 export type InstructorCountAggregateInputType = {
   id?: true
   name?: true
   email?: true
-  contactNumber?: true
   address?: true
+  userId?: true
+  departmentId?: true
   isDeleted?: true
   deletedAt?: true
   createdAt?: true
   updatedAt?: true
-  userId?: true
   _all?: true
 }
 
@@ -181,13 +181,13 @@ export type InstructorGroupByOutputType = {
   id: string
   name: string
   email: string
-  contactNumber: string | null
   address: string | null
+  userId: string
+  departmentId: string
   isDeleted: boolean
   deletedAt: Date | null
   createdAt: Date
   updatedAt: Date
-  userId: string
   _count: InstructorCountAggregateOutputType | null
   _min: InstructorMinAggregateOutputType | null
   _max: InstructorMaxAggregateOutputType | null
@@ -215,28 +215,30 @@ export type InstructorWhereInput = {
   id?: Prisma.StringFilter<"Instructor"> | string
   name?: Prisma.StringFilter<"Instructor"> | string
   email?: Prisma.StringFilter<"Instructor"> | string
-  contactNumber?: Prisma.StringNullableFilter<"Instructor"> | string | null
   address?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  userId?: Prisma.StringFilter<"Instructor"> | string
+  departmentId?: Prisma.StringFilter<"Instructor"> | string
   isDeleted?: Prisma.BoolFilter<"Instructor"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Instructor"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Instructor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Instructor"> | Date | string
-  userId?: Prisma.StringFilter<"Instructor"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  department?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
 }
 
 export type InstructorOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  department?: Prisma.DepartmentOrderByWithRelationInput
 }
 
 export type InstructorWhereUniqueInput = Prisma.AtLeast<{
@@ -247,26 +249,27 @@ export type InstructorWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.InstructorWhereInput[]
   NOT?: Prisma.InstructorWhereInput | Prisma.InstructorWhereInput[]
   name?: Prisma.StringFilter<"Instructor"> | string
-  contactNumber?: Prisma.StringNullableFilter<"Instructor"> | string | null
   address?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  departmentId?: Prisma.StringFilter<"Instructor"> | string
   isDeleted?: Prisma.BoolFilter<"Instructor"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Instructor"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Instructor"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Instructor"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  department?: Prisma.XOR<Prisma.DepartmentScalarRelationFilter, Prisma.DepartmentWhereInput>
 }, "id" | "email" | "userId">
 
 export type InstructorOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   _count?: Prisma.InstructorCountOrderByAggregateInput
   _max?: Prisma.InstructorMaxOrderByAggregateInput
   _min?: Prisma.InstructorMinOrderByAggregateInput
@@ -279,85 +282,84 @@ export type InstructorScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
   name?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
   email?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
-  contactNumber?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
+  userId?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
+  departmentId?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Instructor"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Instructor"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Instructor"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Instructor"> | Date | string
-  userId?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
 }
 
 export type InstructorCreateInput = {
   id?: string
   name: string
   email: string
-  contactNumber?: string | null
   address?: string | null
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutInstuctorInput
+  department: Prisma.DepartmentCreateNestedOneWithoutInstructorsInput
 }
 
 export type InstructorUncheckedCreateInput = {
   id?: string
   name: string
   email: string
-  contactNumber?: string | null
   address?: string | null
+  userId: string
+  departmentId: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  userId: string
 }
 
 export type InstructorUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutInstuctorNestedInput
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutInstructorsNestedInput
 }
 
 export type InstructorUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type InstructorCreateManyInput = {
   id?: string
   name: string
   email: string
-  contactNumber?: string | null
   address?: string | null
+  userId: string
+  departmentId: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  userId: string
 }
 
 export type InstructorUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -369,52 +371,62 @@ export type InstructorUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type InstructorListRelationFilter = {
+  every?: Prisma.InstructorWhereInput
+  some?: Prisma.InstructorWhereInput
+  none?: Prisma.InstructorWhereInput
+}
+
+export type InstructorOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type InstructorCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type InstructorMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type InstructorMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  contactNumber?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
 }
 
 export type InstructorNullableScalarRelationFilter = {
@@ -422,24 +434,50 @@ export type InstructorNullableScalarRelationFilter = {
   isNot?: Prisma.InstructorWhereInput | null
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
+export type InstructorCreateNestedManyWithoutDepartmentInput = {
+  create?: Prisma.XOR<Prisma.InstructorCreateWithoutDepartmentInput, Prisma.InstructorUncheckedCreateWithoutDepartmentInput> | Prisma.InstructorCreateWithoutDepartmentInput[] | Prisma.InstructorUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.InstructorCreateOrConnectWithoutDepartmentInput | Prisma.InstructorCreateOrConnectWithoutDepartmentInput[]
+  createMany?: Prisma.InstructorCreateManyDepartmentInputEnvelope
+  connect?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+}
+
+export type InstructorUncheckedCreateNestedManyWithoutDepartmentInput = {
+  create?: Prisma.XOR<Prisma.InstructorCreateWithoutDepartmentInput, Prisma.InstructorUncheckedCreateWithoutDepartmentInput> | Prisma.InstructorCreateWithoutDepartmentInput[] | Prisma.InstructorUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.InstructorCreateOrConnectWithoutDepartmentInput | Prisma.InstructorCreateOrConnectWithoutDepartmentInput[]
+  createMany?: Prisma.InstructorCreateManyDepartmentInputEnvelope
+  connect?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+}
+
+export type InstructorUpdateManyWithoutDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.InstructorCreateWithoutDepartmentInput, Prisma.InstructorUncheckedCreateWithoutDepartmentInput> | Prisma.InstructorCreateWithoutDepartmentInput[] | Prisma.InstructorUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.InstructorCreateOrConnectWithoutDepartmentInput | Prisma.InstructorCreateOrConnectWithoutDepartmentInput[]
+  upsert?: Prisma.InstructorUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.InstructorUpsertWithWhereUniqueWithoutDepartmentInput[]
+  createMany?: Prisma.InstructorCreateManyDepartmentInputEnvelope
+  set?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+  disconnect?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+  delete?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+  connect?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+  update?: Prisma.InstructorUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.InstructorUpdateWithWhereUniqueWithoutDepartmentInput[]
+  updateMany?: Prisma.InstructorUpdateManyWithWhereWithoutDepartmentInput | Prisma.InstructorUpdateManyWithWhereWithoutDepartmentInput[]
+  deleteMany?: Prisma.InstructorScalarWhereInput | Prisma.InstructorScalarWhereInput[]
+}
+
+export type InstructorUncheckedUpdateManyWithoutDepartmentNestedInput = {
+  create?: Prisma.XOR<Prisma.InstructorCreateWithoutDepartmentInput, Prisma.InstructorUncheckedCreateWithoutDepartmentInput> | Prisma.InstructorCreateWithoutDepartmentInput[] | Prisma.InstructorUncheckedCreateWithoutDepartmentInput[]
+  connectOrCreate?: Prisma.InstructorCreateOrConnectWithoutDepartmentInput | Prisma.InstructorCreateOrConnectWithoutDepartmentInput[]
+  upsert?: Prisma.InstructorUpsertWithWhereUniqueWithoutDepartmentInput | Prisma.InstructorUpsertWithWhereUniqueWithoutDepartmentInput[]
+  createMany?: Prisma.InstructorCreateManyDepartmentInputEnvelope
+  set?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+  disconnect?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+  delete?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+  connect?: Prisma.InstructorWhereUniqueInput | Prisma.InstructorWhereUniqueInput[]
+  update?: Prisma.InstructorUpdateWithWhereUniqueWithoutDepartmentInput | Prisma.InstructorUpdateWithWhereUniqueWithoutDepartmentInput[]
+  updateMany?: Prisma.InstructorUpdateManyWithWhereWithoutDepartmentInput | Prisma.InstructorUpdateManyWithWhereWithoutDepartmentInput[]
+  deleteMany?: Prisma.InstructorScalarWhereInput | Prisma.InstructorScalarWhereInput[]
 }
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
 }
 
 export type InstructorCreateNestedOneWithoutUserInput = {
@@ -474,24 +512,90 @@ export type InstructorUncheckedUpdateOneWithoutUserNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.InstructorUpdateToOneWithWhereWithoutUserInput, Prisma.InstructorUpdateWithoutUserInput>, Prisma.InstructorUncheckedUpdateWithoutUserInput>
 }
 
-export type InstructorCreateWithoutUserInput = {
+export type InstructorCreateWithoutDepartmentInput = {
   id?: string
   name: string
   email: string
-  contactNumber?: string | null
   address?: string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutInstuctorInput
+}
+
+export type InstructorUncheckedCreateWithoutDepartmentInput = {
+  id?: string
+  name: string
+  email: string
+  address?: string | null
+  userId: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
+export type InstructorCreateOrConnectWithoutDepartmentInput = {
+  where: Prisma.InstructorWhereUniqueInput
+  create: Prisma.XOR<Prisma.InstructorCreateWithoutDepartmentInput, Prisma.InstructorUncheckedCreateWithoutDepartmentInput>
+}
+
+export type InstructorCreateManyDepartmentInputEnvelope = {
+  data: Prisma.InstructorCreateManyDepartmentInput | Prisma.InstructorCreateManyDepartmentInput[]
+  skipDuplicates?: boolean
+}
+
+export type InstructorUpsertWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.InstructorWhereUniqueInput
+  update: Prisma.XOR<Prisma.InstructorUpdateWithoutDepartmentInput, Prisma.InstructorUncheckedUpdateWithoutDepartmentInput>
+  create: Prisma.XOR<Prisma.InstructorCreateWithoutDepartmentInput, Prisma.InstructorUncheckedCreateWithoutDepartmentInput>
+}
+
+export type InstructorUpdateWithWhereUniqueWithoutDepartmentInput = {
+  where: Prisma.InstructorWhereUniqueInput
+  data: Prisma.XOR<Prisma.InstructorUpdateWithoutDepartmentInput, Prisma.InstructorUncheckedUpdateWithoutDepartmentInput>
+}
+
+export type InstructorUpdateManyWithWhereWithoutDepartmentInput = {
+  where: Prisma.InstructorScalarWhereInput
+  data: Prisma.XOR<Prisma.InstructorUpdateManyMutationInput, Prisma.InstructorUncheckedUpdateManyWithoutDepartmentInput>
+}
+
+export type InstructorScalarWhereInput = {
+  AND?: Prisma.InstructorScalarWhereInput | Prisma.InstructorScalarWhereInput[]
+  OR?: Prisma.InstructorScalarWhereInput[]
+  NOT?: Prisma.InstructorScalarWhereInput | Prisma.InstructorScalarWhereInput[]
+  id?: Prisma.StringFilter<"Instructor"> | string
+  name?: Prisma.StringFilter<"Instructor"> | string
+  email?: Prisma.StringFilter<"Instructor"> | string
+  address?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  userId?: Prisma.StringFilter<"Instructor"> | string
+  departmentId?: Prisma.StringFilter<"Instructor"> | string
+  isDeleted?: Prisma.BoolFilter<"Instructor"> | boolean
+  deletedAt?: Prisma.DateTimeNullableFilter<"Instructor"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"Instructor"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Instructor"> | Date | string
+}
+
+export type InstructorCreateWithoutUserInput = {
+  id?: string
+  name: string
+  email: string
+  address?: string | null
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  department: Prisma.DepartmentCreateNestedOneWithoutInstructorsInput
+}
+
 export type InstructorUncheckedCreateWithoutUserInput = {
   id?: string
   name: string
   email: string
-  contactNumber?: string | null
   address?: string | null
+  departmentId: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -518,20 +622,68 @@ export type InstructorUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  department?: Prisma.DepartmentUpdateOneRequiredWithoutInstructorsNestedInput
 }
 
 export type InstructorUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  contactNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  departmentId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InstructorCreateManyDepartmentInput = {
+  id?: string
+  name: string
+  email: string
+  address?: string | null
+  userId: string
+  isDeleted?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type InstructorUpdateWithoutDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutInstuctorNestedInput
+}
+
+export type InstructorUncheckedUpdateWithoutDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InstructorUncheckedUpdateManyWithoutDepartmentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -544,84 +696,91 @@ export type InstructorSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   name?: boolean
   email?: boolean
-  contactNumber?: boolean
   address?: boolean
+  userId?: boolean
+  departmentId?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["instructor"]>
 
 export type InstructorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   email?: boolean
-  contactNumber?: boolean
   address?: boolean
+  userId?: boolean
+  departmentId?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["instructor"]>
 
 export type InstructorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
   email?: boolean
-  contactNumber?: boolean
   address?: boolean
+  userId?: boolean
+  departmentId?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["instructor"]>
 
 export type InstructorSelectScalar = {
   id?: boolean
   name?: boolean
   email?: boolean
-  contactNumber?: boolean
   address?: boolean
+  userId?: boolean
+  departmentId?: boolean
   isDeleted?: boolean
   deletedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  userId?: boolean
 }
 
-export type InstructorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "contactNumber" | "address" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["instructor"]>
+export type InstructorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "address" | "userId" | "departmentId" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["instructor"]>
 export type InstructorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
 }
 export type InstructorIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
 }
 export type InstructorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
 }
 
 export type $InstructorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Instructor"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    department: Prisma.$DepartmentPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
     email: string
-    contactNumber: string | null
     address: string | null
+    userId: string
+    departmentId: string
     isDeleted: boolean
     deletedAt: Date | null
     createdAt: Date
     updatedAt: Date
-    userId: string
   }, ExtArgs["result"]["instructor"]>
   composites: {}
 }
@@ -1017,6 +1176,7 @@ readonly fields: InstructorFieldRefs;
 export interface Prisma__InstructorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  department<T extends Prisma.DepartmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DepartmentDefaultArgs<ExtArgs>>): Prisma.Prisma__DepartmentClient<runtime.Types.Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1049,13 +1209,13 @@ export interface InstructorFieldRefs {
   readonly id: Prisma.FieldRef<"Instructor", 'String'>
   readonly name: Prisma.FieldRef<"Instructor", 'String'>
   readonly email: Prisma.FieldRef<"Instructor", 'String'>
-  readonly contactNumber: Prisma.FieldRef<"Instructor", 'String'>
   readonly address: Prisma.FieldRef<"Instructor", 'String'>
+  readonly userId: Prisma.FieldRef<"Instructor", 'String'>
+  readonly departmentId: Prisma.FieldRef<"Instructor", 'String'>
   readonly isDeleted: Prisma.FieldRef<"Instructor", 'Boolean'>
   readonly deletedAt: Prisma.FieldRef<"Instructor", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Instructor", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Instructor", 'DateTime'>
-  readonly userId: Prisma.FieldRef<"Instructor", 'String'>
 }
     
 

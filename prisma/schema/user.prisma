@@ -1,8 +1,8 @@
 model User {
   id String @id @default(uuid())
-
   name               String
   email              String
+  phone              String?
   password           String?
   googleId           String?      @unique
   authProvider       AuthProvider @default(CREDENTIAL)
@@ -12,14 +12,18 @@ model User {
   needPasswordChange Boolean      @default(false)
   imageUrl           String       @default("")
   imagePublicId      String       @default("")
+
+
+  instuctor Instructor?
+  student Student?
+
   isDeleted          Boolean      @default(false)
   deletedAt          DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  instuctor Instructor?
-  student Student?
+
 
   @@unique([email])
   @@map("users")

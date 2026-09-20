@@ -15,7 +15,7 @@ const StudentRegistrationZodSchema = z.object({
 			"Password must contain at least one special character",
 		),
 	student: z
-		.object({ contactNumber: z.string().optional(), age: z.number() })
+		.object({ address: z.string().optional(),  })
 		.optional(),
 });
 

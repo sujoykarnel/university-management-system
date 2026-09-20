@@ -8,7 +8,7 @@ export interface IRegisterStudentPayload {
 	email: string;
 	password: string;
 	student: {
-		contactNumber?: string;
+		address?: string;
 	};
 }
 

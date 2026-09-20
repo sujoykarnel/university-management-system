@@ -51,8 +51,14 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Course: 'Course',
+  Department: 'Department',
+  Enrollment: 'Enrollment',
   Instructor: 'Instructor',
+  Program: 'Program',
+  Semester: 'Semester',
   Student: 'Student',
+  University: 'University',
   User: 'User'
 } as const
 
@@ -72,42 +78,130 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const CourseScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  code: 'code',
+  credit: 'credit',
+  semesterNo: 'semesterNo',
+  programId: 'programId',
+  isDelete: 'isDelete',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
+
+
+export const DepartmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  isDelete: 'isDelete',
+  deletedAt: 'deletedAt',
+  universityId: 'universityId',
+  createdAt: 'createdAt',
+  updateAt: 'updateAt'
+} as const
+
+export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
+
+
+export const EnrollmentScalarFieldEnum = {
+  id: 'id',
+  courseId: 'courseId',
+  studentId: 'studentId',
+  semesterId: 'semesterId'
+} as const
+
+export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
+
+
 export const InstructorScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  contactNumber: 'contactNumber',
   address: 'address',
+  userId: 'userId',
+  departmentId: 'departmentId',
   isDeleted: 'isDeleted',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  userId: 'userId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type InstructorScalarFieldEnum = (typeof InstructorScalarFieldEnum)[keyof typeof InstructorScalarFieldEnum]
+
+
+export const ProgramScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  duration: 'duration',
+  totalCredits: 'totalCredits',
+  departmentId: 'departmentId',
+  isDelete: 'isDelete',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeof ProgramScalarFieldEnum]
+
+
+export const SemesterScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  isDelete: 'isDelete',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SemesterScalarFieldEnum = (typeof SemesterScalarFieldEnum)[keyof typeof SemesterScalarFieldEnum]
 
 
 export const StudentScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
-  contactNumber: 'contactNumber',
   address: 'address',
+  userId: 'userId',
+  programId: 'programId',
+  admistionYear: 'admistionYear',
+  currentSemester: 'currentSemester',
+  isActive: 'isActive',
   isDeleted: 'isDeleted',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  userId: 'userId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
+
+
+export const UniversityScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  shortName: 'shortName',
+  address: 'address',
+  email: 'email',
+  phone: 'phone',
+  isDelete: 'isDelete',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UniversityScalarFieldEnum = (typeof UniversityScalarFieldEnum)[keyof typeof UniversityScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  phone: 'phone',
   password: 'password',
   googleId: 'googleId',
   authProvider: 'authProvider',

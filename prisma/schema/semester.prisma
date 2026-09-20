@@ -1,0 +1,15 @@
+model Semester {
+  id String @id @default(uuid())
+  title String
+
+  isDelete Boolean @default(false)
+  deletedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  //relation
+  enrollemt Enrollment[]
+
+  @@map("semesters")
+}

@@ -39,7 +39,7 @@ const updateProfileImage = catchAsync(async (req: Request, res: Response) => {
 	sendResponse(res, {
 		statusCode: httpStatus.OK,
 		success: true,
-		message: "New tokens generated successfully",
+		message: "Profile Image Update Successfully",
 		data: result,
 	});
 });
