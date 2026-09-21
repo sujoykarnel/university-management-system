@@ -281,6 +281,7 @@ export type CourseOrderByWithRelationInput = {
 
 export type CourseWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  unique_code_program?: Prisma.CourseUnique_code_programCompoundUniqueInput
   AND?: Prisma.CourseWhereInput | Prisma.CourseWhereInput[]
   OR?: Prisma.CourseWhereInput[]
   NOT?: Prisma.CourseWhereInput | Prisma.CourseWhereInput[]
@@ -295,7 +296,7 @@ export type CourseWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Course"> | Date | string
   program?: Prisma.XOR<Prisma.ProgramScalarRelationFilter, Prisma.ProgramWhereInput>
   enrollments?: Prisma.EnrollmentListRelationFilter
-}, "id">
+}, "id" | "unique_code_program">
 
 export type CourseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -423,6 +424,11 @@ export type CourseUncheckedUpdateManyInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CourseUnique_code_programCompoundUniqueInput = {
+  code: string
+  programId: string
 }
 
 export type CourseCountOrderByAggregateInput = {

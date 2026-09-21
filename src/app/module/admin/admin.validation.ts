@@ -1,20 +1,20 @@
 import z from "zod";
 
 const UniversityCreateZodSchema = z.object({
-	name: z.string().trim().min(2, "Name Is Required"),
+	name: z.string().trim().min(2),
 	shortName: z.string().min(2).max(10),
 });
 
 const DepartmentCreateZodSchema = z.object({
-	name: z.string().trim().min(2, "Name Is Required"),
+	name: z.string().trim().min(2),
 	code: z.string().min(2).max(10),
-	universityId: z.string("Not a string..."),
+	universityId: z.string(),
 });
 
 const ProgramCreateZodSchema = z.object({
-	name: z.string().trim().min(2, "Name Is Required"),
+	name: z.string().trim().min(2),
 	code: z.string().min(2).max(10),
-	duration: z.number().int().min(1).max(4, "Duration Is Required"),
+	duration: z.number().int().min(1).max(4, "Duration Maximum 4 Years"),
 	totalCredits: z.number().int().min(1).max(160),
 	departmentId: z.string("Not a string..."),
 });
@@ -43,8 +43,16 @@ const InstructorCreateZodSchema = z.object({
 			.min(5, "Address must be at least 5 characters long")
 			.optional(),
 
-		departmentId: z.string().trim().min(2, "Specialization is required"),
+		departmentId: z.string().trim().min(2),
 	}),
+});
+
+const CourseCreateZodSchema = z.object({
+	title: z.string().trim().min(2),
+	code: z.string().min(2).max(10),
+	credit: z.number("Not a Number...").int().min(1).max(3),
+	semesterNo: z.number("Not a Number...").int().min(1).max(12),
+	programId: z.string(),
 });
 
 export const AdminValidation = {
@@ -52,4 +60,5 @@ export const AdminValidation = {
 	DepartmentCreateZodSchema,
 	ProgramCreateZodSchema,
 	InstructorCreateZodSchema,
+	CourseCreateZodSchema,
 };

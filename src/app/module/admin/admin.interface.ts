@@ -1,15 +1,15 @@
-export interface IUniversityPayload {
+export interface IUniversityCreatePayload {
 	name: string;
 	shortName: string;
 }
 
-export interface IDepartmentPayload {
+export interface IDepartmentCreatePayload {
 	name: string;
 	code: string;
 	universityId: string;
 }
 
-export interface IProgramPayload {
+export interface IProgramCreatePayload {
 	name: string;
 	code: string;
 	duration: number;
@@ -17,20 +17,22 @@ export interface IProgramPayload {
 	departmentId: string;
 }
 
-export type ICoursePayload = {
+export type ICourseCreatePayload = {
 	title: string;
 	code: string;
 	credit: number;
 	semesterNo: number;
+  programId: string
 };
+
 export type IInstructorCreatePayload = {
-	user:{
-    name: string
-    email: string
-    password: string
-  },
-  instructor:{
-    address?: string
-    departmentId: string
-  }
+	user: {
+		name: string;
+		email: string;
+		password: string;
+	};
+	instructor: {
+		address?: string;
+		departmentId: string;
+	};
 };

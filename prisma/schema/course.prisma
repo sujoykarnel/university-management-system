@@ -1,7 +1,7 @@
 model Course {
   id String @id @default(uuid())
   title String
-  code String
+  code String 
   credit Float
   semesterNo Int
 
@@ -18,6 +18,7 @@ model Course {
 
 
 
+  @@unique([code, programId], name: "unique_code_program")
   @@index([title], name: "idx_course_title")
   @@index([code], name: "idx_course_code")
   @@map("courses")

@@ -7,13 +7,14 @@ import { cloudinary } from "../../lib/cloudinary";
 import { prisma } from "../../lib/prisma";
 import { AppError } from "../../utils/AppError";
 import type {
-	IDepartmentPayload,
+	ICourseCreatePayload,
+	IDepartmentCreatePayload,
 	IInstructorCreatePayload,
-	IProgramPayload,
-	IUniversityPayload,
+	IProgramCreatePayload,
+	IUniversityCreatePayload,
 } from "./admin.interface";
 
-const createUniversity = async (payload: IUniversityPayload) => {
+const createUniversity = async (payload: IUniversityCreatePayload) => {
 	const { name, shortName } = payload;
 
 	const university = await prisma.university.create({
@@ -26,7 +27,7 @@ const createUniversity = async (payload: IUniversityPayload) => {
 	return university;
 };
 
-const createDepartment = async (payload: IDepartmentPayload) => {
+const createDepartment = async (payload: IDepartmentCreatePayload) => {
 	const { name, code, universityId } = payload;
 
 	const department = await prisma.department.create({
@@ -43,7 +44,7 @@ const createDepartment = async (payload: IDepartmentPayload) => {
 	return department;
 };
 
-const createProgram = async (payload: IProgramPayload) => {
+const createProgram = async (payload: IProgramCreatePayload) => {
 	const { name, code, duration, totalCredits, departmentId } = payload;
 
 	const program = await prisma.program.create({
@@ -155,7 +156,24 @@ const createInstructor = async (
 	return instructor;
 };
 
-const createCourse = async () => {};
+const createCourse = async (payload: ICourseCreatePayload) => {
+	const { title, code, credit, semesterNo, programId } = payload;
+
+	const course = prisma.course.create({
+		data: {
+			title,
+			code,
+			credit,
+			semesterNo,
+			programId,
+		},
+		include: {
+			program: true,
+		},
+	});
+
+	return course;
+};
 
 export const AdminService = {
 	createUniversity,

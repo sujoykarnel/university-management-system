@@ -45,4 +45,11 @@ router.post(
 	AdminController.createInstructor,
 );
 
+router.post(
+	"/course",
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	validateRequest(AdminValidation.CourseCreateZodSchema),
+	AdminController.createCourse,
+);
+
 export const AdminRoutes = router;

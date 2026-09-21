@@ -74,7 +74,18 @@ const createInstructor = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
-const createCourse = catchAsync(async (req: Request, res: Response) => {});
+const createCourse = catchAsync(async (req: Request, res: Response) => {
+	const payload = req.body;
+
+	const result = await AdminService.createCourse(payload);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Course Created successfully",
+		data: result,
+	});
+});
 
 export const AdminController = {
 	createUniversity,
