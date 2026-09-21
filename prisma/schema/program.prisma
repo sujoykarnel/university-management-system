@@ -1,25 +1,22 @@
 model Program {
-  id String @id @default(uuid())
-  name String
-  code String @unique
-  duration Int
+  id           String @id @default(uuid())
+  name         String
+  code         String @unique
+  duration     Int
   totalCredits Float
 
   departmentId String
-  department Department @relation(fields: [departmentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   students Student[]
-  courses Course[]
+  courses  Course[]
 
-  isDelete Boolean @default(false)
+  isDelete  Boolean   @default(false)
   deletedAt DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-
-
-
-  @@index([name],name:"idx_program_name")
+  @@index([name], name: "idx_program_name")
   @@map("programs")
 }

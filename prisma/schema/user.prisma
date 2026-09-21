@@ -1,5 +1,5 @@
 model User {
-  id String @id @default(uuid())
+  id                 String       @id @default(uuid())
   name               String
   email              String
   phone              String?
@@ -13,17 +13,14 @@ model User {
   imageUrl           String       @default("")
   imagePublicId      String       @default("")
 
-
   instuctor Instructor?
-  student Student?
+  student   Student?
 
-  isDeleted          Boolean      @default(false)
-  deletedAt          DateTime?
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-
 
   @@unique([email])
   @@map("users")

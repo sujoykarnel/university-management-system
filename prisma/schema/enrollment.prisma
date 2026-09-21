@@ -2,15 +2,13 @@ model Enrollment {
   id String @id @default(uuid())
 
   courseId String
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   studentId String
-  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   semesterId String
-  semester Semester @relation(fields: [semesterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-
+  semester   Semester @relation(fields: [semesterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@unique([courseId, studentId], name: "unique_enrollment_courseId_studentId")
   @@map("enrollments")

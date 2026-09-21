@@ -1,8 +1,8 @@
 model Semester {
-  id String @id @default(uuid())
+  id    String @id @default(uuid())
   title String
 
-  isDelete Boolean @default(false)
+  isDelete  Boolean   @default(false)
   deletedAt DateTime?
 
   createdAt DateTime @default(now())

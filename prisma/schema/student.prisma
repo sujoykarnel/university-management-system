@@ -1,30 +1,26 @@
 model Student {
-  id String @id @default(uuid())
-  name          String
-  email         String    @unique
-  address       String?
+  id      String  @id @default(uuid())
+  name    String
+  email   String  @unique
+  address String?
 
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   programId String?
-  program Program? @relation(fields: [programId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  program   Program? @relation(fields: [programId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   enrollments Enrollment[]
 
-
-  admistionYear Int?
+  admistionYear   Int?
   currentSemester Int?
-  isActive Boolean @default(true)
+  isActive        Boolean @default(true)
 
-  isDeleted     Boolean   @default(false)
-  deletedAt     DateTime?
+  isDeleted Boolean   @default(false)
+  deletedAt DateTime?
 
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-
-
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([email], name: "idx_student_email")
   @@index([isActive], name: "idx_student_isActive")
