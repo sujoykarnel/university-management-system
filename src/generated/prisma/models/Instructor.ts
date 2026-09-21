@@ -29,6 +29,8 @@ export type InstructorMinAggregateOutputType = {
   name: string | null
   email: string | null
   address: string | null
+  resume: string | null
+  resumePublicId: string | null
   userId: string | null
   departmentId: string | null
   isDeleted: boolean | null
@@ -42,6 +44,8 @@ export type InstructorMaxAggregateOutputType = {
   name: string | null
   email: string | null
   address: string | null
+  resume: string | null
+  resumePublicId: string | null
   userId: string | null
   departmentId: string | null
   isDeleted: boolean | null
@@ -55,6 +59,9 @@ export type InstructorCountAggregateOutputType = {
   name: number
   email: number
   address: number
+  resume: number
+  resumePublicId: number
+  additionalFiles: number
   userId: number
   departmentId: number
   isDeleted: number
@@ -70,6 +77,8 @@ export type InstructorMinAggregateInputType = {
   name?: true
   email?: true
   address?: true
+  resume?: true
+  resumePublicId?: true
   userId?: true
   departmentId?: true
   isDeleted?: true
@@ -83,6 +92,8 @@ export type InstructorMaxAggregateInputType = {
   name?: true
   email?: true
   address?: true
+  resume?: true
+  resumePublicId?: true
   userId?: true
   departmentId?: true
   isDeleted?: true
@@ -96,6 +107,9 @@ export type InstructorCountAggregateInputType = {
   name?: true
   email?: true
   address?: true
+  resume?: true
+  resumePublicId?: true
+  additionalFiles?: true
   userId?: true
   departmentId?: true
   isDeleted?: true
@@ -182,6 +196,9 @@ export type InstructorGroupByOutputType = {
   name: string
   email: string
   address: string | null
+  resume: string | null
+  resumePublicId: string | null
+  additionalFiles: runtime.JsonValue | null
   userId: string
   departmentId: string
   isDeleted: boolean
@@ -216,6 +233,9 @@ export type InstructorWhereInput = {
   name?: Prisma.StringFilter<"Instructor"> | string
   email?: Prisma.StringFilter<"Instructor"> | string
   address?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  resume?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  resumePublicId?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  additionalFiles?: Prisma.JsonNullableFilter<"Instructor">
   userId?: Prisma.StringFilter<"Instructor"> | string
   departmentId?: Prisma.StringFilter<"Instructor"> | string
   isDeleted?: Prisma.BoolFilter<"Instructor"> | boolean
@@ -231,6 +251,9 @@ export type InstructorOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
+  resume?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumePublicId?: Prisma.SortOrderInput | Prisma.SortOrder
+  additionalFiles?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -250,6 +273,9 @@ export type InstructorWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.InstructorWhereInput | Prisma.InstructorWhereInput[]
   name?: Prisma.StringFilter<"Instructor"> | string
   address?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  resume?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  resumePublicId?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  additionalFiles?: Prisma.JsonNullableFilter<"Instructor">
   departmentId?: Prisma.StringFilter<"Instructor"> | string
   isDeleted?: Prisma.BoolFilter<"Instructor"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Instructor"> | Date | string | null
@@ -264,6 +290,9 @@ export type InstructorOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
+  resume?: Prisma.SortOrderInput | Prisma.SortOrder
+  resumePublicId?: Prisma.SortOrderInput | Prisma.SortOrder
+  additionalFiles?: Prisma.SortOrderInput | Prisma.SortOrder
   userId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -283,6 +312,9 @@ export type InstructorScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
   email?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
   address?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
+  resume?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
+  resumePublicId?: Prisma.StringNullableWithAggregatesFilter<"Instructor"> | string | null
+  additionalFiles?: Prisma.JsonNullableWithAggregatesFilter<"Instructor">
   userId?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
   departmentId?: Prisma.StringWithAggregatesFilter<"Instructor"> | string
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Instructor"> | boolean
@@ -296,6 +328,9 @@ export type InstructorCreateInput = {
   name: string
   email: string
   address?: string | null
+  resume?: string | null
+  resumePublicId?: string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -309,6 +344,9 @@ export type InstructorUncheckedCreateInput = {
   name: string
   email: string
   address?: string | null
+  resume?: string | null
+  resumePublicId?: string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId: string
   departmentId: string
   isDeleted?: boolean
@@ -322,6 +360,9 @@ export type InstructorUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -335,6 +376,9 @@ export type InstructorUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -348,6 +392,9 @@ export type InstructorCreateManyInput = {
   name: string
   email: string
   address?: string | null
+  resume?: string | null
+  resumePublicId?: string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId: string
   departmentId: string
   isDeleted?: boolean
@@ -361,6 +408,9 @@ export type InstructorUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -372,6 +422,9 @@ export type InstructorUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -395,6 +448,9 @@ export type InstructorCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  resume?: Prisma.SortOrder
+  resumePublicId?: Prisma.SortOrder
+  additionalFiles?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -408,6 +464,8 @@ export type InstructorMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  resume?: Prisma.SortOrder
+  resumePublicId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -421,6 +479,8 @@ export type InstructorMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   email?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  resume?: Prisma.SortOrder
+  resumePublicId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   departmentId?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
@@ -517,6 +577,9 @@ export type InstructorCreateWithoutDepartmentInput = {
   name: string
   email: string
   address?: string | null
+  resume?: string | null
+  resumePublicId?: string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -529,6 +592,9 @@ export type InstructorUncheckedCreateWithoutDepartmentInput = {
   name: string
   email: string
   address?: string | null
+  resume?: string | null
+  resumePublicId?: string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -570,6 +636,9 @@ export type InstructorScalarWhereInput = {
   name?: Prisma.StringFilter<"Instructor"> | string
   email?: Prisma.StringFilter<"Instructor"> | string
   address?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  resume?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  resumePublicId?: Prisma.StringNullableFilter<"Instructor"> | string | null
+  additionalFiles?: Prisma.JsonNullableFilter<"Instructor">
   userId?: Prisma.StringFilter<"Instructor"> | string
   departmentId?: Prisma.StringFilter<"Instructor"> | string
   isDeleted?: Prisma.BoolFilter<"Instructor"> | boolean
@@ -583,6 +652,9 @@ export type InstructorCreateWithoutUserInput = {
   name: string
   email: string
   address?: string | null
+  resume?: string | null
+  resumePublicId?: string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isDeleted?: boolean
   deletedAt?: Date | string | null
   createdAt?: Date | string
@@ -595,6 +667,9 @@ export type InstructorUncheckedCreateWithoutUserInput = {
   name: string
   email: string
   address?: string | null
+  resume?: string | null
+  resumePublicId?: string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   departmentId: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -623,6 +698,9 @@ export type InstructorUpdateWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -635,6 +713,9 @@ export type InstructorUncheckedUpdateWithoutUserInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   departmentId?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -647,6 +728,9 @@ export type InstructorCreateManyDepartmentInput = {
   name: string
   email: string
   address?: string | null
+  resume?: string | null
+  resumePublicId?: string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId: string
   isDeleted?: boolean
   deletedAt?: Date | string | null
@@ -659,6 +743,9 @@ export type InstructorUpdateWithoutDepartmentInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -671,6 +758,9 @@ export type InstructorUncheckedUpdateWithoutDepartmentInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -683,6 +773,9 @@ export type InstructorUncheckedUpdateManyWithoutDepartmentInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resume?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumePublicId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  additionalFiles?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -697,6 +790,9 @@ export type InstructorSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   name?: boolean
   email?: boolean
   address?: boolean
+  resume?: boolean
+  resumePublicId?: boolean
+  additionalFiles?: boolean
   userId?: boolean
   departmentId?: boolean
   isDeleted?: boolean
@@ -712,6 +808,9 @@ export type InstructorSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   name?: boolean
   email?: boolean
   address?: boolean
+  resume?: boolean
+  resumePublicId?: boolean
+  additionalFiles?: boolean
   userId?: boolean
   departmentId?: boolean
   isDeleted?: boolean
@@ -727,6 +826,9 @@ export type InstructorSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   name?: boolean
   email?: boolean
   address?: boolean
+  resume?: boolean
+  resumePublicId?: boolean
+  additionalFiles?: boolean
   userId?: boolean
   departmentId?: boolean
   isDeleted?: boolean
@@ -742,6 +844,9 @@ export type InstructorSelectScalar = {
   name?: boolean
   email?: boolean
   address?: boolean
+  resume?: boolean
+  resumePublicId?: boolean
+  additionalFiles?: boolean
   userId?: boolean
   departmentId?: boolean
   isDeleted?: boolean
@@ -750,7 +855,7 @@ export type InstructorSelectScalar = {
   updatedAt?: boolean
 }
 
-export type InstructorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "address" | "userId" | "departmentId" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["instructor"]>
+export type InstructorOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "address" | "resume" | "resumePublicId" | "additionalFiles" | "userId" | "departmentId" | "isDeleted" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["instructor"]>
 export type InstructorInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   department?: boolean | Prisma.DepartmentDefaultArgs<ExtArgs>
@@ -775,6 +880,9 @@ export type $InstructorPayload<ExtArgs extends runtime.Types.Extensions.Internal
     name: string
     email: string
     address: string | null
+    resume: string | null
+    resumePublicId: string | null
+    additionalFiles: runtime.JsonValue | null
     userId: string
     departmentId: string
     isDeleted: boolean
@@ -1210,6 +1318,9 @@ export interface InstructorFieldRefs {
   readonly name: Prisma.FieldRef<"Instructor", 'String'>
   readonly email: Prisma.FieldRef<"Instructor", 'String'>
   readonly address: Prisma.FieldRef<"Instructor", 'String'>
+  readonly resume: Prisma.FieldRef<"Instructor", 'String'>
+  readonly resumePublicId: Prisma.FieldRef<"Instructor", 'String'>
+  readonly additionalFiles: Prisma.FieldRef<"Instructor", 'Json'>
   readonly userId: Prisma.FieldRef<"Instructor", 'String'>
   readonly departmentId: Prisma.FieldRef<"Instructor", 'String'>
   readonly isDeleted: Prisma.FieldRef<"Instructor", 'Boolean'>

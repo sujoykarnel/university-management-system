@@ -103,59 +103,60 @@ export const seedTesterAdmin = async () => {
 	}
 };
 
-export const seedTesterDoctor = async () => {
-	try {
-		const isTesterDoctor = await prisma.user.findUnique({
-			where: {
-				email: config.tester_doctor_email,
-			},
-		});
+// export const seedTesterInstructor = async () => {
+// 	try {
+// 		const isTesterDoctor = await prisma.user.findUnique({
+// 			where: {
+// 				email: config.tester_doctor_email,
+// 			},
+// 		});
 
-		if (isTesterDoctor) {
-			console.log("Tester Doctor Already Exists!");
-			return;
-		}
+// 		if (isTesterDoctor) {
+// 			console.log("Tester Doctor Already Exists!");
+// 			return;
+// 		}
 
-		const name = config.tester_doctor_name;
-		const email = config.tester_doctor_email;
-		const password = config.tester_doctor_password;
+// 		const name = config.tester_doctor_name;
+// 		const email = config.tester_doctor_email;
+// 		const password = config.tester_doctor_password;
 
-		if (!name || !email || !password) {
-			throw new Error(
-				"Tester Doctor Name, Email & Password Missing In Env File!!!",
-			);
-		}
+// 		if (!name || !email || !password) {
+// 			throw new Error(
+// 				"Tester Instructor Name, Email & Password Missing In Env File!!!",
+// 			);
+// 		}
 
-		const hashedPassword = await bcrypt.hash(
-			password,
-			Number(config.bcrypt_salt_rounds),
-		);
+// 		const hashedPassword = await bcrypt.hash(
+// 			password,
+// 			Number(config.bcrypt_salt_rounds),
+// 		);
 
-		const testerInstructor = await prisma.user.create({
-			data: {
-				name,
-				email,
-				password: hashedPassword,
-				role: Role.INSTRUCTOR,
-				needPasswordChange: false,
-				emailVerified: true,
-				doctor: {
-					create: {
-						email,
-						name,
+// 		const testerInstructor = await prisma.user.create({
+// 			data: {
+// 				name,
+// 				email,
+// 				password: hashedPassword,
+// 				role: Role.INSTRUCTOR,
+// 				needPasswordChange: false,
+// 				emailVerified: true,
+// 				instuctor: {
+// 					create: {
+// 						email,
+// 						name,
+//             de
 
-					},
-				},
-			},
-		});
+// 					},
+// 				},
+// 			},
+// 		});
 
-		console.log("Teater Admin Created : ", testerInstructor);
-	} catch (error) {
-		console.log("Error Seeding Teater Admin: ", error);
-		await prisma.user.delete({
-			where: {
-				email: config.tester_admin_email,
-			},
-		});
-	}
-};
+// 		console.log("Teater Admin Created : ", testerInstructor);
+// 	} catch (error) {
+// 		console.log("Error Seeding Teater Admin: ", error);
+// 		await prisma.user.delete({
+// 			where: {
+// 				email: config.tester_admin_email,
+// 			},
+// 		});
+// 	}
+// };

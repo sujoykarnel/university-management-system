@@ -28,9 +28,9 @@ export type DepartmentMinAggregateOutputType = {
   id: string | null
   name: string | null
   code: string | null
+  universityId: string | null
   isDelete: boolean | null
   deletedAt: Date | null
-  universityId: string | null
   createdAt: Date | null
   updateAt: Date | null
 }
@@ -39,9 +39,9 @@ export type DepartmentMaxAggregateOutputType = {
   id: string | null
   name: string | null
   code: string | null
+  universityId: string | null
   isDelete: boolean | null
   deletedAt: Date | null
-  universityId: string | null
   createdAt: Date | null
   updateAt: Date | null
 }
@@ -50,9 +50,9 @@ export type DepartmentCountAggregateOutputType = {
   id: number
   name: number
   code: number
+  universityId: number
   isDelete: number
   deletedAt: number
-  universityId: number
   createdAt: number
   updateAt: number
   _all: number
@@ -63,9 +63,9 @@ export type DepartmentMinAggregateInputType = {
   id?: true
   name?: true
   code?: true
+  universityId?: true
   isDelete?: true
   deletedAt?: true
-  universityId?: true
   createdAt?: true
   updateAt?: true
 }
@@ -74,9 +74,9 @@ export type DepartmentMaxAggregateInputType = {
   id?: true
   name?: true
   code?: true
+  universityId?: true
   isDelete?: true
   deletedAt?: true
-  universityId?: true
   createdAt?: true
   updateAt?: true
 }
@@ -85,9 +85,9 @@ export type DepartmentCountAggregateInputType = {
   id?: true
   name?: true
   code?: true
+  universityId?: true
   isDelete?: true
   deletedAt?: true
-  universityId?: true
   createdAt?: true
   updateAt?: true
   _all?: true
@@ -169,9 +169,9 @@ export type DepartmentGroupByOutputType = {
   id: string
   name: string
   code: string
+  universityId: string
   isDelete: boolean
   deletedAt: Date | null
-  universityId: string
   createdAt: Date
   updateAt: Date
   _count: DepartmentCountAggregateOutputType | null
@@ -201,9 +201,9 @@ export type DepartmentWhereInput = {
   id?: Prisma.StringFilter<"Department"> | string
   name?: Prisma.StringFilter<"Department"> | string
   code?: Prisma.StringFilter<"Department"> | string
+  universityId?: Prisma.StringFilter<"Department"> | string
   isDelete?: Prisma.BoolFilter<"Department"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
-  universityId?: Prisma.StringFilter<"Department"> | string
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   university?: Prisma.XOR<Prisma.UniversityScalarRelationFilter, Prisma.UniversityWhereInput>
@@ -215,9 +215,9 @@ export type DepartmentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  universityId?: Prisma.SortOrder
   isDelete?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  universityId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
   university?: Prisma.UniversityOrderByWithRelationInput
@@ -227,29 +227,29 @@ export type DepartmentOrderByWithRelationInput = {
 
 export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  unique_code_universityId?: Prisma.DepartmentUnique_code_universityIdCompoundUniqueInput
+  unique_code_university?: Prisma.DepartmentUnique_code_universityCompoundUniqueInput
   AND?: Prisma.DepartmentWhereInput | Prisma.DepartmentWhereInput[]
   OR?: Prisma.DepartmentWhereInput[]
   NOT?: Prisma.DepartmentWhereInput | Prisma.DepartmentWhereInput[]
   name?: Prisma.StringFilter<"Department"> | string
   code?: Prisma.StringFilter<"Department"> | string
+  universityId?: Prisma.StringFilter<"Department"> | string
   isDelete?: Prisma.BoolFilter<"Department"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
-  universityId?: Prisma.StringFilter<"Department"> | string
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   university?: Prisma.XOR<Prisma.UniversityScalarRelationFilter, Prisma.UniversityWhereInput>
   instructors?: Prisma.InstructorListRelationFilter
   programs?: Prisma.ProgramListRelationFilter
-}, "id" | "unique_code_universityId">
+}, "id" | "unique_code_university">
 
 export type DepartmentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  universityId?: Prisma.SortOrder
   isDelete?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  universityId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
   _count?: Prisma.DepartmentCountOrderByAggregateInput
@@ -264,9 +264,9 @@ export type DepartmentScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Department"> | string
   name?: Prisma.StringWithAggregatesFilter<"Department"> | string
   code?: Prisma.StringWithAggregatesFilter<"Department"> | string
+  universityId?: Prisma.StringWithAggregatesFilter<"Department"> | string
   isDelete?: Prisma.BoolWithAggregatesFilter<"Department"> | boolean
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Department"> | Date | string | null
-  universityId?: Prisma.StringWithAggregatesFilter<"Department"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Department"> | Date | string
   updateAt?: Prisma.DateTimeWithAggregatesFilter<"Department"> | Date | string
 }
@@ -288,9 +288,9 @@ export type DepartmentUncheckedCreateInput = {
   id?: string
   name: string
   code: string
+  universityId: string
   isDelete?: boolean
   deletedAt?: Date | string | null
-  universityId: string
   createdAt?: Date | string
   updateAt?: Date | string
   instructors?: Prisma.InstructorUncheckedCreateNestedManyWithoutDepartmentInput
@@ -314,9 +314,9 @@ export type DepartmentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  universityId?: Prisma.StringFieldUpdateOperationsInput | string
   isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  universityId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructors?: Prisma.InstructorUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -327,9 +327,9 @@ export type DepartmentCreateManyInput = {
   id?: string
   name: string
   code: string
+  universityId: string
   isDelete?: boolean
   deletedAt?: Date | string | null
-  universityId: string
   createdAt?: Date | string
   updateAt?: Date | string
 }
@@ -348,14 +348,14 @@ export type DepartmentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  universityId?: Prisma.StringFieldUpdateOperationsInput | string
   isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  universityId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type DepartmentUnique_code_universityIdCompoundUniqueInput = {
+export type DepartmentUnique_code_universityCompoundUniqueInput = {
   code: string
   universityId: string
 }
@@ -364,9 +364,9 @@ export type DepartmentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  universityId?: Prisma.SortOrder
   isDelete?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  universityId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
@@ -375,9 +375,9 @@ export type DepartmentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  universityId?: Prisma.SortOrder
   isDelete?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  universityId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
@@ -386,9 +386,9 @@ export type DepartmentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   code?: Prisma.SortOrder
+  universityId?: Prisma.SortOrder
   isDelete?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
-  universityId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updateAt?: Prisma.SortOrder
 }
@@ -494,9 +494,9 @@ export type DepartmentUncheckedCreateWithoutInstructorsInput = {
   id?: string
   name: string
   code: string
+  universityId: string
   isDelete?: boolean
   deletedAt?: Date | string | null
-  universityId: string
   createdAt?: Date | string
   updateAt?: Date | string
   programs?: Prisma.ProgramUncheckedCreateNestedManyWithoutDepartmentInput
@@ -534,9 +534,9 @@ export type DepartmentUncheckedUpdateWithoutInstructorsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  universityId?: Prisma.StringFieldUpdateOperationsInput | string
   isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  universityId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.ProgramUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -558,9 +558,9 @@ export type DepartmentUncheckedCreateWithoutProgramsInput = {
   id?: string
   name: string
   code: string
+  universityId: string
   isDelete?: boolean
   deletedAt?: Date | string | null
-  universityId: string
   createdAt?: Date | string
   updateAt?: Date | string
   instructors?: Prisma.InstructorUncheckedCreateNestedManyWithoutDepartmentInput
@@ -598,9 +598,9 @@ export type DepartmentUncheckedUpdateWithoutProgramsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   code?: Prisma.StringFieldUpdateOperationsInput | string
+  universityId?: Prisma.StringFieldUpdateOperationsInput | string
   isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  universityId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updateAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   instructors?: Prisma.InstructorUncheckedUpdateManyWithoutDepartmentNestedInput
@@ -663,9 +663,9 @@ export type DepartmentScalarWhereInput = {
   id?: Prisma.StringFilter<"Department"> | string
   name?: Prisma.StringFilter<"Department"> | string
   code?: Prisma.StringFilter<"Department"> | string
+  universityId?: Prisma.StringFilter<"Department"> | string
   isDelete?: Prisma.BoolFilter<"Department"> | boolean
   deletedAt?: Prisma.DateTimeNullableFilter<"Department"> | Date | string | null
-  universityId?: Prisma.StringFilter<"Department"> | string
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updateAt?: Prisma.DateTimeFilter<"Department"> | Date | string
 }
@@ -758,9 +758,9 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   name?: boolean
   code?: boolean
+  universityId?: boolean
   isDelete?: boolean
   deletedAt?: boolean
-  universityId?: boolean
   createdAt?: boolean
   updateAt?: boolean
   university?: boolean | Prisma.UniversityDefaultArgs<ExtArgs>
@@ -773,9 +773,9 @@ export type DepartmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   name?: boolean
   code?: boolean
+  universityId?: boolean
   isDelete?: boolean
   deletedAt?: boolean
-  universityId?: boolean
   createdAt?: boolean
   updateAt?: boolean
   university?: boolean | Prisma.UniversityDefaultArgs<ExtArgs>
@@ -785,9 +785,9 @@ export type DepartmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   id?: boolean
   name?: boolean
   code?: boolean
+  universityId?: boolean
   isDelete?: boolean
   deletedAt?: boolean
-  universityId?: boolean
   createdAt?: boolean
   updateAt?: boolean
   university?: boolean | Prisma.UniversityDefaultArgs<ExtArgs>
@@ -797,14 +797,14 @@ export type DepartmentSelectScalar = {
   id?: boolean
   name?: boolean
   code?: boolean
+  universityId?: boolean
   isDelete?: boolean
   deletedAt?: boolean
-  universityId?: boolean
   createdAt?: boolean
   updateAt?: boolean
 }
 
-export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "isDelete" | "deletedAt" | "universityId" | "createdAt" | "updateAt", ExtArgs["result"]["department"]>
+export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "universityId" | "isDelete" | "deletedAt" | "createdAt" | "updateAt", ExtArgs["result"]["department"]>
 export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   university?: boolean | Prisma.UniversityDefaultArgs<ExtArgs>
   instructors?: boolean | Prisma.Department$instructorsArgs<ExtArgs>
@@ -829,9 +829,9 @@ export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     id: string
     name: string
     code: string
+    universityId: string
     isDelete: boolean
     deletedAt: Date | null
-    universityId: string
     createdAt: Date
     updateAt: Date
   }, ExtArgs["result"]["department"]>
@@ -1263,9 +1263,9 @@ export interface DepartmentFieldRefs {
   readonly id: Prisma.FieldRef<"Department", 'String'>
   readonly name: Prisma.FieldRef<"Department", 'String'>
   readonly code: Prisma.FieldRef<"Department", 'String'>
+  readonly universityId: Prisma.FieldRef<"Department", 'String'>
   readonly isDelete: Prisma.FieldRef<"Department", 'Boolean'>
   readonly deletedAt: Prisma.FieldRef<"Department", 'DateTime'>
-  readonly universityId: Prisma.FieldRef<"Department", 'String'>
   readonly createdAt: Prisma.FieldRef<"Department", 'DateTime'>
   readonly updateAt: Prisma.FieldRef<"Department", 'DateTime'>
 }

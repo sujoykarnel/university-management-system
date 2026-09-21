@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { Role } from "../../../generated/prisma/enums";
+import { upload } from "../../lib/multer";
 import { auth } from "../../middleware/checkAuth";
 import { validateRequest } from "../../middleware/validateRequest";
 import { AdminController } from "./admin.controller";
@@ -19,6 +20,29 @@ router.post(
 	auth(Role.ADMIN, Role.SUPER_ADMIN),
 	validateRequest(AdminValidation.DepartmentCreateZodSchema),
 	AdminController.createDepartment,
+);
+
+router.post(
+	"/program",
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	validateRequest(AdminValidation.ProgramCreateZodSchema),
+	AdminController.createProgram,
+);
+
+router.post(
+	"/instructor",
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	upload.fields([
+		{
+			name: "resume",
+			maxCount: 1,
+		},
+		{
+			name: "additionalFiles",
+			maxCount: 10,
+		},
+	]),
+	AdminController.createInstructor,
 );
 
 export const AdminRoutes = router;

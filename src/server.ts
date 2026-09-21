@@ -24,6 +24,7 @@ async function main() {
 		// init seeding
     await seedSuperAdmin()
     await seedTesterAdmin()
+    
 
 		// delete unverified
 

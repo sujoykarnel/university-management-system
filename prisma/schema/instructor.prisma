@@ -4,6 +4,10 @@ model Instructor {
   email             String                   @unique
   address           String?
 
+  resume            String?
+  resumePublicId    String?
+  additionalFiles   Json? // stores: [{url:"...", publicId: "..."}]
+
 
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
