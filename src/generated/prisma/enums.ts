@@ -45,7 +45,7 @@ export const AuthProvider = {
 export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider]
 
 
-export const AdmissionStatus = {
+export const RegistrationStatus = {
   PENDING: 'PENDING',
   CONFIRMED: 'CONFIRMED',
   CANCELED: 'CANCELED',
@@ -53,7 +53,7 @@ export const AdmissionStatus = {
   CMPOLETED: 'CMPOLETED'
 } as const
 
-export type AdmissionStatus = (typeof AdmissionStatus)[keyof typeof AdmissionStatus]
+export type RegistrationStatus = (typeof RegistrationStatus)[keyof typeof RegistrationStatus]
 
 
 export const PaymentStatus = {

@@ -2,31 +2,29 @@ model CourseOffering {
   id String @id @default(ulid())
 
   courseId String
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade, onUpdate: Cascade )
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   semesterId String
-  semester Semester @relation(fields: [semesterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  semester   Semester @relation(fields: [semesterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   instructorId String
-  instructor Instructor @relation(fields: [instructorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  instructor   Instructor @relation(fields: [instructorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  courseFee Int
-  totalSeat Int
+  courseFee     Int
+  totalSeat     Int
   availableSeat Int
 
-  isDelete Boolean @default(false)
+  courseRegistration CourseRegistration[]
+
+  isDelete Boolean   @default(false)
   deleteAt DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 
   @@unique([courseId, semesterId], name: "unique_course_semester")
   @@index([semesterId])
   @@index([instructorId])
   @@index([courseId])
   @@map("couserOffierings")
-
-
-
 }

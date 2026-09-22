@@ -22,12 +22,11 @@ enum AuthProvider {
   CREDENTIAL
 }
 
-enum AdmissionStatus {
+enum RegistrationStatus {
   PENDING
   CONFIRMED
   CANCELED
-  ONGOING
-  CMPOLETED
+ 
 }
 
 enum PaymentStatus {

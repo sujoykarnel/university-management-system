@@ -28,20 +28,25 @@ export type Course = Prisma.CourseModel
  */
 export type CourseOffering = Prisma.CourseOfferingModel
 /**
+ * Model CourseRegistration
+ * 
+ */
+export type CourseRegistration = Prisma.CourseRegistrationModel
+/**
  * Model Department
  * 
  */
 export type Department = Prisma.DepartmentModel
 /**
- * Model Enrollment
- * 
- */
-export type Enrollment = Prisma.EnrollmentModel
-/**
  * Model Instructor
  * 
  */
 export type Instructor = Prisma.InstructorModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
 /**
  * Model Program
  * 
