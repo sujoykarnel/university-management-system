@@ -87,10 +87,38 @@ const createCourse = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
+const createSemester = catchAsync(async (req: Request, res: Response) => {
+	const payload = req.body;
+
+	const result = await AdminService.createSemester(payload);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Semester Created successfully",
+		data: result,
+	});
+});
+
+const createCourseOffering = catchAsync(async (req: Request, res: Response) => {
+	const payload = req.body;
+
+	const result = await AdminService.createCourseOffering(payload);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Course Offering Created successfully",
+		data: result,
+	});
+});
+
 export const AdminController = {
 	createUniversity,
 	createDepartment,
 	createProgram,
 	createInstructor,
 	createCourse,
+	createSemester,
+	createCourseOffering,
 };

@@ -43,3 +43,10 @@ enum InstructorVerificationStatus {
   APPROVED
   REJECTED
 }
+
+enum SemesterStatus {
+  UPCOMING
+  ACTIVE
+  COMPLETED
+  CLOSED
+}

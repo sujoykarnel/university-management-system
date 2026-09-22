@@ -8,7 +8,7 @@ model Course {
   programId String
   program   Program @relation(fields: [programId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  enrollments Enrollment[]
+  courseOfferings CourseOffering[]
 
   isDelete  Boolean   @default(false)
   deletedAt DateTime?

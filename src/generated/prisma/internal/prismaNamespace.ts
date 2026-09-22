@@ -398,6 +398,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   Course: 'Course',
+  CourseOffering: 'CourseOffering',
   Department: 'Department',
   Enrollment: 'Enrollment',
   Instructor: 'Instructor',
@@ -421,7 +422,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "course" | "department" | "enrollment" | "instructor" | "program" | "semester" | "student" | "university" | "user"
+    modelProps: "course" | "courseOffering" | "department" | "enrollment" | "instructor" | "program" | "semester" | "student" | "university" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -496,6 +497,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CourseCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CourseCountAggregateOutputType> | number
+        }
+      }
+    }
+    CourseOffering: {
+      payload: Prisma.$CourseOfferingPayload<ExtArgs>
+      fields: Prisma.CourseOfferingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CourseOfferingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CourseOfferingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>
+        }
+        findFirst: {
+          args: Prisma.CourseOfferingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CourseOfferingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>
+        }
+        findMany: {
+          args: Prisma.CourseOfferingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>[]
+        }
+        create: {
+          args: Prisma.CourseOfferingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>
+        }
+        createMany: {
+          args: Prisma.CourseOfferingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CourseOfferingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>[]
+        }
+        delete: {
+          args: Prisma.CourseOfferingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>
+        }
+        update: {
+          args: Prisma.CourseOfferingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>
+        }
+        deleteMany: {
+          args: Prisma.CourseOfferingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CourseOfferingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CourseOfferingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>[]
+        }
+        upsert: {
+          args: Prisma.CourseOfferingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CourseOfferingPayload>
+        }
+        aggregate: {
+          args: Prisma.CourseOfferingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCourseOffering>
+        }
+        groupBy: {
+          args: Prisma.CourseOfferingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CourseOfferingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CourseOfferingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CourseOfferingCountAggregateOutputType> | number
         }
       }
     }
@@ -1146,6 +1221,23 @@ export const CourseScalarFieldEnum = {
 export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
 
 
+export const CourseOfferingScalarFieldEnum = {
+  id: 'id',
+  courseId: 'courseId',
+  semesterId: 'semesterId',
+  instructorId: 'instructorId',
+  courseFee: 'courseFee',
+  totalSeat: 'totalSeat',
+  availableSeat: 'availableSeat',
+  isDelete: 'isDelete',
+  deleteAt: 'deleteAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CourseOfferingScalarFieldEnum = (typeof CourseOfferingScalarFieldEnum)[keyof typeof CourseOfferingScalarFieldEnum]
+
+
 export const DepartmentScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1162,9 +1254,7 @@ export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof
 
 export const EnrollmentScalarFieldEnum = {
   id: 'id',
-  courseId: 'courseId',
-  studentId: 'studentId',
-  semesterId: 'semesterId'
+  studentId: 'studentId'
 } as const
 
 export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
@@ -1207,7 +1297,11 @@ export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeo
 
 export const SemesterScalarFieldEnum = {
   id: 'id',
-  title: 'title',
+  name: 'name',
+  year: 'year',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
   isDelete: 'isDelete',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt',
@@ -1396,6 +1490,20 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
  * Reference to a field of type 'QueryMode'
  */
 export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
+ * Reference to a field of type 'SemesterStatus'
+ */
+export type EnumSemesterStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SemesterStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SemesterStatus[]'
+ */
+export type ListEnumSemesterStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SemesterStatus[]'>
     
 
 
@@ -1592,6 +1700,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   course?: Prisma.CourseOmit
+  courseOffering?: Prisma.CourseOfferingOmit
   department?: Prisma.DepartmentOmit
   enrollment?: Prisma.EnrollmentOmit
   instructor?: Prisma.InstructorOmit

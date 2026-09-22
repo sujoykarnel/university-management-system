@@ -1,6 +1,14 @@
 model Semester {
   id    String @id @default(uuid())
-  title String
+  name String
+  year Int
+  startDate DateTime
+  endDate DateTime
+  status SemesterStatus @default(UPCOMING)
+
+
+  courseOfferings CourseOffering[]
+
 
   isDelete  Boolean   @default(false)
   deletedAt DateTime?
@@ -8,8 +16,7 @@ model Semester {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  //relation
-  enrollemt Enrollment[]
+
 
   @@map("semesters")
 }

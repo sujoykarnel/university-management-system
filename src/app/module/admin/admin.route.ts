@@ -52,4 +52,20 @@ router.post(
 	AdminController.createCourse,
 );
 
+router.post(
+	"/semester",
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	validateRequest(AdminValidation.SemesterCreateZodSchema),
+	AdminController.createSemester,
+);
+
+router.post(
+	"/course-offering",
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	validateRequest(AdminValidation.CourseOfferingCreateZodSchema),
+	AdminController.createCourseOffering,
+);
+
+
+
 export const AdminRoutes = router;

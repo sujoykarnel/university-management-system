@@ -74,3 +74,13 @@ export const InstructorVerificationStatus = {
 } as const
 
 export type InstructorVerificationStatus = (typeof InstructorVerificationStatus)[keyof typeof InstructorVerificationStatus]
+
+
+export const SemesterStatus = {
+  UPCOMING: 'UPCOMING',
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED',
+  CLOSED: 'CLOSED'
+} as const
+
+export type SemesterStatus = (typeof SemesterStatus)[keyof typeof SemesterStatus]

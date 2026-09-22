@@ -253,6 +253,23 @@ export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonNullableFilter<$PrismaModel>
 }
 
+export type EnumSemesterStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.SemesterStatus | Prisma.EnumSemesterStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SemesterStatus[] | Prisma.ListEnumSemesterStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SemesterStatus[] | Prisma.ListEnumSemesterStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSemesterStatusFilter<$PrismaModel> | $Enums.SemesterStatus
+}
+
+export type EnumSemesterStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SemesterStatus | Prisma.EnumSemesterStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SemesterStatus[] | Prisma.ListEnumSemesterStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SemesterStatus[] | Prisma.ListEnumSemesterStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSemesterStatusWithAggregatesFilter<$PrismaModel> | $Enums.SemesterStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSemesterStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSemesterStatusFilter<$PrismaModel>
+}
+
 export type IntNullableFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
@@ -543,6 +560,23 @@ export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
   gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type NestedEnumSemesterStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.SemesterStatus | Prisma.EnumSemesterStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SemesterStatus[] | Prisma.ListEnumSemesterStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SemesterStatus[] | Prisma.ListEnumSemesterStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSemesterStatusFilter<$PrismaModel> | $Enums.SemesterStatus
+}
+
+export type NestedEnumSemesterStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SemesterStatus | Prisma.EnumSemesterStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.SemesterStatus[] | Prisma.ListEnumSemesterStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SemesterStatus[] | Prisma.ListEnumSemesterStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSemesterStatusWithAggregatesFilter<$PrismaModel> | $Enums.SemesterStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSemesterStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSemesterStatusFilter<$PrismaModel>
 }
 
 export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {

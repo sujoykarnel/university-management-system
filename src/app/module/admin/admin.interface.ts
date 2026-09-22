@@ -22,7 +22,7 @@ export type ICourseCreatePayload = {
 	code: string;
 	credit: number;
 	semesterNo: number;
-  programId: string
+	programId: string;
 };
 
 export type IInstructorCreatePayload = {
@@ -35,4 +35,19 @@ export type IInstructorCreatePayload = {
 		address?: string;
 		departmentId: string;
 	};
+};
+
+export type ISemesterCreatePayload = {
+	name: string;
+	year: number;
+	startDate: string;
+	endDate: string;
+};
+
+export type ICourseOfferingCreatePayload = {
+  courseId: string;
+	semesterId: string;
+	instructorId: string;
+	courseFee: number;
+  totalSeat: number
 };

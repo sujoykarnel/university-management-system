@@ -8,9 +8,11 @@ import { prisma } from "../../lib/prisma";
 import { AppError } from "../../utils/AppError";
 import type {
 	ICourseCreatePayload,
+	ICourseOfferingCreatePayload,
 	IDepartmentCreatePayload,
 	IInstructorCreatePayload,
 	IProgramCreatePayload,
+	ISemesterCreatePayload,
 	IUniversityCreatePayload,
 } from "./admin.interface";
 
@@ -175,10 +177,44 @@ const createCourse = async (payload: ICourseCreatePayload) => {
 	return course;
 };
 
+const createSemester = async (payload: ISemesterCreatePayload) => {
+	const { name, year, startDate, endDate } = payload;
+
+	const semester = prisma.semester.create({
+		data: {
+			name,
+			year,
+			startDate,
+			endDate,
+		},
+	});
+
+	return semester;
+};
+
+const createCourseOffering = async (payload: ICourseOfferingCreatePayload) => {
+	const { courseId, semesterId, instructorId, courseFee, totalSeat } = payload;
+
+	const semester = prisma.courseOffering.create({
+		data: {
+			courseId,
+			semesterId,
+			instructorId,
+			courseFee,
+			totalSeat,
+			availableSeat: totalSeat,
+		},
+	});
+
+	return semester;
+};
+
 export const AdminService = {
 	createUniversity,
 	createDepartment,
 	createProgram,
 	createInstructor,
 	createCourse,
+	createSemester,
+	createCourseOffering,
 };

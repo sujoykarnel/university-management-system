@@ -55,10 +55,27 @@ const CourseCreateZodSchema = z.object({
 	programId: z.string(),
 });
 
+const SemesterCreateZodSchema = z.object({
+	name: z.string().trim().min(2),
+	year: z.coerce.number("Year must be a number").int("Year must be an integer"),
+	startDate: z.coerce.date("Start date must be a valid date"),
+	endDate: z.coerce.date("End date must be a valid date"),
+});
+
+const CourseOfferingCreateZodSchema = z.object({
+	courseId: z.string().trim(),
+	semesterId: z.string().trim(),
+	instructorId: z.string().trim(),
+	courseFee: z.number("Not a Number...").int().min(1),
+	totalSeat: z.number("Not a Number...").int().min(1),
+});
+
 export const AdminValidation = {
 	UniversityCreateZodSchema,
 	DepartmentCreateZodSchema,
 	ProgramCreateZodSchema,
 	InstructorCreateZodSchema,
 	CourseCreateZodSchema,
+	SemesterCreateZodSchema,
+	CourseOfferingCreateZodSchema,
 };

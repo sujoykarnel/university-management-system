@@ -52,6 +52,7 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   Course: 'Course',
+  CourseOffering: 'CourseOffering',
   Department: 'Department',
   Enrollment: 'Enrollment',
   Instructor: 'Instructor',
@@ -94,6 +95,23 @@ export const CourseScalarFieldEnum = {
 export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
 
 
+export const CourseOfferingScalarFieldEnum = {
+  id: 'id',
+  courseId: 'courseId',
+  semesterId: 'semesterId',
+  instructorId: 'instructorId',
+  courseFee: 'courseFee',
+  totalSeat: 'totalSeat',
+  availableSeat: 'availableSeat',
+  isDelete: 'isDelete',
+  deleteAt: 'deleteAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CourseOfferingScalarFieldEnum = (typeof CourseOfferingScalarFieldEnum)[keyof typeof CourseOfferingScalarFieldEnum]
+
+
 export const DepartmentScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -110,9 +128,7 @@ export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof
 
 export const EnrollmentScalarFieldEnum = {
   id: 'id',
-  courseId: 'courseId',
-  studentId: 'studentId',
-  semesterId: 'semesterId'
+  studentId: 'studentId'
 } as const
 
 export type EnrollmentScalarFieldEnum = (typeof EnrollmentScalarFieldEnum)[keyof typeof EnrollmentScalarFieldEnum]
@@ -155,7 +171,11 @@ export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeo
 
 export const SemesterScalarFieldEnum = {
   id: 'id',
-  title: 'title',
+  name: 'name',
+  year: 'year',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
   isDelete: 'isDelete',
   deletedAt: 'deletedAt',
   createdAt: 'createdAt',
