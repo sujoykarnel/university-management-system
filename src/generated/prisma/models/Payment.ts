@@ -87,7 +87,7 @@ export type PaymentCountAggregateOutputType = {
   bkashTrxId: number
   payerReference: number
   paidAt: number
-  getwayResponse: number
+  gatewayResponse: number
   refundTrxId: number
   refundAmount: number
   refundReason: number
@@ -160,7 +160,7 @@ export type PaymentCountAggregateInputType = {
   bkashTrxId?: true
   payerReference?: true
   paidAt?: true
-  getwayResponse?: true
+  gatewayResponse?: true
   refundTrxId?: true
   refundAmount?: true
   refundReason?: true
@@ -268,7 +268,7 @@ export type PaymentGroupByOutputType = {
   bkashTrxId: string | null
   payerReference: string | null
   paidAt: string | null
-  getwayResponse: runtime.JsonValue | null
+  gatewayResponse: runtime.JsonValue | null
   refundTrxId: string | null
   refundAmount: runtime.Decimal | null
   refundReason: string | null
@@ -312,7 +312,7 @@ export type PaymentWhereInput = {
   bkashTrxId?: Prisma.StringNullableFilter<"Payment"> | string | null
   payerReference?: Prisma.StringNullableFilter<"Payment"> | string | null
   paidAt?: Prisma.StringNullableFilter<"Payment"> | string | null
-  getwayResponse?: Prisma.JsonNullableFilter<"Payment">
+  gatewayResponse?: Prisma.JsonNullableFilter<"Payment">
   refundTrxId?: Prisma.StringNullableFilter<"Payment"> | string | null
   refundAmount?: Prisma.DecimalNullableFilter<"Payment"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.StringNullableFilter<"Payment"> | string | null
@@ -334,7 +334,7 @@ export type PaymentOrderByWithRelationInput = {
   bkashTrxId?: Prisma.SortOrderInput | Prisma.SortOrder
   payerReference?: Prisma.SortOrderInput | Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  getwayResponse?: Prisma.SortOrderInput | Prisma.SortOrder
+  gatewayResponse?: Prisma.SortOrderInput | Prisma.SortOrder
   refundTrxId?: Prisma.SortOrderInput | Prisma.SortOrder
   refundAmount?: Prisma.SortOrderInput | Prisma.SortOrder
   refundReason?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -360,7 +360,7 @@ export type PaymentWhereUniqueInput = Prisma.AtLeast<{
   bkashTrxId?: Prisma.StringNullableFilter<"Payment"> | string | null
   payerReference?: Prisma.StringNullableFilter<"Payment"> | string | null
   paidAt?: Prisma.StringNullableFilter<"Payment"> | string | null
-  getwayResponse?: Prisma.JsonNullableFilter<"Payment">
+  gatewayResponse?: Prisma.JsonNullableFilter<"Payment">
   refundTrxId?: Prisma.StringNullableFilter<"Payment"> | string | null
   refundAmount?: Prisma.DecimalNullableFilter<"Payment"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.StringNullableFilter<"Payment"> | string | null
@@ -381,7 +381,7 @@ export type PaymentOrderByWithAggregationInput = {
   bkashTrxId?: Prisma.SortOrderInput | Prisma.SortOrder
   payerReference?: Prisma.SortOrderInput | Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  getwayResponse?: Prisma.SortOrderInput | Prisma.SortOrder
+  gatewayResponse?: Prisma.SortOrderInput | Prisma.SortOrder
   refundTrxId?: Prisma.SortOrderInput | Prisma.SortOrder
   refundAmount?: Prisma.SortOrderInput | Prisma.SortOrder
   refundReason?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -410,7 +410,7 @@ export type PaymentScalarWhereWithAggregatesInput = {
   bkashTrxId?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
   payerReference?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
   paidAt?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
-  getwayResponse?: Prisma.JsonNullableWithAggregatesFilter<"Payment">
+  gatewayResponse?: Prisma.JsonNullableWithAggregatesFilter<"Payment">
   refundTrxId?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
   refundAmount?: Prisma.DecimalNullableWithAggregatesFilter<"Payment"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.StringNullableWithAggregatesFilter<"Payment"> | string | null
@@ -431,7 +431,7 @@ export type PaymentCreateInput = {
   bkashTrxId?: string | null
   payerReference?: string | null
   paidAt?: string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: string | null
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: string | null
@@ -452,7 +452,7 @@ export type PaymentUncheckedCreateInput = {
   bkashTrxId?: string | null
   payerReference?: string | null
   paidAt?: string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: string | null
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: string | null
@@ -473,7 +473,7 @@ export type PaymentUpdateInput = {
   bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -494,7 +494,7 @@ export type PaymentUncheckedUpdateInput = {
   bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -515,7 +515,7 @@ export type PaymentCreateManyInput = {
   bkashTrxId?: string | null
   payerReference?: string | null
   paidAt?: string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: string | null
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: string | null
@@ -536,7 +536,7 @@ export type PaymentUpdateManyMutationInput = {
   bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -556,7 +556,7 @@ export type PaymentUncheckedUpdateManyInput = {
   bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -582,7 +582,7 @@ export type PaymentCountOrderByAggregateInput = {
   bkashTrxId?: Prisma.SortOrder
   payerReference?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
-  getwayResponse?: Prisma.SortOrder
+  gatewayResponse?: Prisma.SortOrder
   refundTrxId?: Prisma.SortOrder
   refundAmount?: Prisma.SortOrder
   refundReason?: Prisma.SortOrder
@@ -705,7 +705,7 @@ export type PaymentCreateWithoutCourseRegistrationInput = {
   bkashTrxId?: string | null
   payerReference?: string | null
   paidAt?: string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: string | null
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: string | null
@@ -725,7 +725,7 @@ export type PaymentUncheckedCreateWithoutCourseRegistrationInput = {
   bkashTrxId?: string | null
   payerReference?: string | null
   paidAt?: string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: string | null
   refundAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: string | null
@@ -761,7 +761,7 @@ export type PaymentUpdateWithoutCourseRegistrationInput = {
   bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -781,7 +781,7 @@ export type PaymentUncheckedUpdateWithoutCourseRegistrationInput = {
   bkashTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   payerReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paidAt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  getwayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  gatewayResponse?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   refundTrxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   refundAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   refundReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -803,7 +803,7 @@ export type PaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   bkashTrxId?: boolean
   payerReference?: boolean
   paidAt?: boolean
-  getwayResponse?: boolean
+  gatewayResponse?: boolean
   refundTrxId?: boolean
   refundAmount?: boolean
   refundReason?: boolean
@@ -825,7 +825,7 @@ export type PaymentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   bkashTrxId?: boolean
   payerReference?: boolean
   paidAt?: boolean
-  getwayResponse?: boolean
+  gatewayResponse?: boolean
   refundTrxId?: boolean
   refundAmount?: boolean
   refundReason?: boolean
@@ -847,7 +847,7 @@ export type PaymentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   bkashTrxId?: boolean
   payerReference?: boolean
   paidAt?: boolean
-  getwayResponse?: boolean
+  gatewayResponse?: boolean
   refundTrxId?: boolean
   refundAmount?: boolean
   refundReason?: boolean
@@ -869,7 +869,7 @@ export type PaymentSelectScalar = {
   bkashTrxId?: boolean
   payerReference?: boolean
   paidAt?: boolean
-  getwayResponse?: boolean
+  gatewayResponse?: boolean
   refundTrxId?: boolean
   refundAmount?: boolean
   refundReason?: boolean
@@ -879,7 +879,7 @@ export type PaymentSelectScalar = {
   updatedAt?: boolean
 }
 
-export type PaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "amount" | "currency" | "paymentGetway" | "merchantInvoiceNumber" | "bkashPaymentId" | "bkashTrxId" | "payerReference" | "paidAt" | "getwayResponse" | "refundTrxId" | "refundAmount" | "refundReason" | "refundedAt" | "courseRegistationId" | "createdAt" | "updatedAt", ExtArgs["result"]["payment"]>
+export type PaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "amount" | "currency" | "paymentGetway" | "merchantInvoiceNumber" | "bkashPaymentId" | "bkashTrxId" | "payerReference" | "paidAt" | "gatewayResponse" | "refundTrxId" | "refundAmount" | "refundReason" | "refundedAt" | "courseRegistationId" | "createdAt" | "updatedAt", ExtArgs["result"]["payment"]>
 export type PaymentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courseRegistration?: boolean | Prisma.CourseRegistrationDefaultArgs<ExtArgs>
 }
@@ -906,7 +906,7 @@ export type $PaymentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     bkashTrxId: string | null
     payerReference: string | null
     paidAt: string | null
-    getwayResponse: runtime.JsonValue | null
+    gatewayResponse: runtime.JsonValue | null
     refundTrxId: string | null
     refundAmount: runtime.Decimal | null
     refundReason: string | null
@@ -1348,7 +1348,7 @@ export interface PaymentFieldRefs {
   readonly bkashTrxId: Prisma.FieldRef<"Payment", 'String'>
   readonly payerReference: Prisma.FieldRef<"Payment", 'String'>
   readonly paidAt: Prisma.FieldRef<"Payment", 'String'>
-  readonly getwayResponse: Prisma.FieldRef<"Payment", 'Json'>
+  readonly gatewayResponse: Prisma.FieldRef<"Payment", 'Json'>
   readonly refundTrxId: Prisma.FieldRef<"Payment", 'String'>
   readonly refundAmount: Prisma.FieldRef<"Payment", 'Decimal'>
   readonly refundReason: Prisma.FieldRef<"Payment", 'String'>

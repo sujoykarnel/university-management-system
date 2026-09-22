@@ -48,9 +48,7 @@ export type AuthProvider = (typeof AuthProvider)[keyof typeof AuthProvider]
 export const RegistrationStatus = {
   PENDING: 'PENDING',
   CONFIRMED: 'CONFIRMED',
-  CANCELED: 'CANCELED',
-  ONGOING: 'ONGOING',
-  CMPOLETED: 'CMPOLETED'
+  CANCELED: 'CANCELED'
 } as const
 
 export type RegistrationStatus = (typeof RegistrationStatus)[keyof typeof RegistrationStatus]

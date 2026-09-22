@@ -9,7 +9,7 @@ model Payment {
   bkashTrxId            String?
   payerReference        String?
   paidAt                String?
-  getwayResponse        Json?
+  gatewayResponse        Json?
   refundTrxId           String?
   refundAmount          Decimal?      @db.Decimal(10, 2)
   refundReason          String?

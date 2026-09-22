@@ -1367,7 +1367,7 @@ export const PaymentScalarFieldEnum = {
   bkashTrxId: 'bkashTrxId',
   payerReference: 'payerReference',
   paidAt: 'paidAt',
-  getwayResponse: 'getwayResponse',
+  gatewayResponse: 'gatewayResponse',
   refundTrxId: 'refundTrxId',
   refundAmount: 'refundAmount',
   refundReason: 'refundReason',

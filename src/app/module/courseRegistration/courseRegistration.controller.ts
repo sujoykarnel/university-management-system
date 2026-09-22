@@ -28,7 +28,7 @@ const payCourseRegistration = catchAsync(
 		const payload = req.body;
 		const user = req.user!;
 
-		const result = CourseRegistrationService.payCourseRegistration(
+		const result =await CourseRegistrationService.payCourseRegistration(
 			payload,
 			user,
 		);

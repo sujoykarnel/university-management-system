@@ -10,7 +10,10 @@ import { transporter } from "../../lib/nodemailer";
 import { prisma } from "../../lib/prisma";
 import type { RequestUser } from "../../middleware/checkAuth";
 import { AppError } from "../../utils/AppError";
-import type { ICourseRefistrationPayload, IPayCourseRegistrationPayload } from "./courseRegistration.interfate";
+import type {
+	ICourseRefistrationPayload,
+	IPayCourseRegistrationPayload,
+} from "./courseRegistration.interfate";
 
 const createCourseRegistration = async (
 	payload: ICourseRefistrationPayload,
@@ -107,7 +110,7 @@ const createCourseRegistration = async (
 				merchantInvoiceNumber: bkashCreatePaymentResult.merchantInvoiceNumber,
 				courseRegistationId: registration.id,
 				amount: offeredCourse.courseFee.toString(),
-				getwayResponse: bkashCreatePaymentResult,
+				gatewayResponse: bkashCreatePaymentResult,
 				bkashPaymentId: bkashCreatePaymentResult.paymentID,
 				payerReference: user.email,
 			},
@@ -209,7 +212,7 @@ const courseRegistrationCallback = async (query: Record<string, any>) => {
 						status: PaymentStatus.PAID,
 						bkashTrxId: executedPaymentResult.trxID,
 						paidAt: executedPaymentResult.paymentExecuteTime,
-						getwayResponse: executedPaymentResult,
+						gatewayResponse: executedPaymentResult,
 					},
 				});
 
@@ -275,7 +278,7 @@ const courseRegistrationCallback = async (query: Record<string, any>) => {
 					},
 					data: {
 						status: PaymentStatus.FAILED,
-						getwayResponse: executedPaymentResult,
+						gatewayResponse: executedPaymentResult,
 					},
 				});
 				return {
@@ -288,7 +291,7 @@ const courseRegistrationCallback = async (query: Record<string, any>) => {
 					},
 					data: {
 						status: PaymentStatus.CANCELED,
-						getwayResponse: executedPaymentResult,
+						gatewayResponse: executedPaymentResult,
 					},
 				});
 				return {
@@ -310,11 +313,83 @@ const courseRegistrationCallback = async (query: Record<string, any>) => {
 	return transectionResult;
 };
 
+const payCourseRegistration = async (
+	payload: IPayCourseRegistrationPayload,
+	user: RequestUser,
+) => {
+	const transectionResult = await prisma.$transaction(async (tx) => {
+		const registationId = payload.courseRegistrationId;
 
-const payCourseRegistration = async(payload: IPayCourseRegistrationPayload, user: RequestUser)=>{
-  
+		const existingRegistraion = await tx.courseRegistration.findUnique({
+			where: { id: registationId },
+			include: {
+				courseOffering: true,
+			},
+		});
 
-}
+		if (!existingRegistraion) {
+			throw new AppError(httpStatus.NOT_FOUND, "Course Registration Not Found");
+		}
+
+		if (existingRegistraion.status !== RegistrationStatus.PENDING) {
+			throw new AppError(
+				httpStatus.BAD_REQUEST,
+				"Course Registration Not Pending",
+			);
+		}
+
+		const bkashIdToken = await getBkashIdToken();
+
+		if (!bkashIdToken) {
+			throw new AppError(httpStatus.BAD_REQUEST, "No Bkash Access Token Found");
+		}
+
+		const bkashCreatePaymentResponse = await fetch(
+			`${config.bkash_base_url}/tokenized/checkout/create`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					Authorization: bkashIdToken,
+					"X-App-Key": config.bkash_app_key,
+				},
+				body: JSON.stringify({
+					mode: "0011",
+					// payerReference: "0123456789", //user email or phone number
+					payerReference: user.email, //user email or phone number
+					callbackURL: `${config.bkash_callback_url}/course-registration/payment/callback`,
+					amount: existingRegistraion.courseOffering.courseFee.toString(),
+					currency: "BDT",
+					intent: "sale",
+					// merchantInvoiceNumber: "Inv4" // apppointment id
+					merchantInvoiceNumber: existingRegistraion.id, // apppointment id
+				}),
+			},
+		);
+
+		const bkashCreatePaymentResult = await bkashCreatePaymentResponse.json();
+    
+		await tx.payment.update({
+			where: {
+				courseRegistationId: existingRegistraion.id,
+			},
+
+			data: {
+				merchantInvoiceNumber: bkashCreatePaymentResult.merchantInvoiceNumber,
+				gatewayResponse: bkashCreatePaymentResult,
+				bkashPaymentId: bkashCreatePaymentResult.paymentID,
+			},
+		});
+
+		return {
+			paymentUrl: bkashCreatePaymentResult.bkashURL,
+		};
+
+	});
+
+	return transectionResult;
+};
 
 export const CourseRegistrationService = {
 	createCourseRegistration,
