@@ -49,7 +49,7 @@ app.use("/api/v1/result", ResultRoutes);
 app.use("/api/v1/transcript", TranscriptRoutes);
 
 app.get("/", async (req: Request, res: Response) => {
-	res.send(httpStatus.OK).json({
+	res.status(httpStatus.OK).json({
 		success: true,
 		message: "Welcome University Management System Backend",
 	});
