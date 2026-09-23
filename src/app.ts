@@ -15,6 +15,7 @@ import { AuthRoutes } from "./app/module/auth/auth.route";
 import { CourseOfferingRoutes } from "./app/module/courseOffering/courseOffering.route";
 import { CourseRegistrationRoutes } from "./app/module/courseRegistration/courseRegistration.route";
 import { ExamRoutes } from "./app/module/exam/exam.route";
+import { ResultRoutes } from "./app/module/result/result.route";
 import { SemesterRoutes } from "./app/module/semester/semester.route";
 import { UserRoutes } from "./app/module/user/user.route";
 
@@ -43,6 +44,7 @@ app.use("/api/v1/semester", SemesterRoutes);
 app.use("/api/v1/course-registration", CourseRegistrationRoutes);
 app.use("/api/v1/attendance", AttendanceRoutes);
 app.use("/api/v1/exam", ExamRoutes);
+app.use("/api/v1/result", ResultRoutes);
 
 app.get("/", async (req: Request, res: Response) => {
 	res.send(httpStatus.OK).json({
