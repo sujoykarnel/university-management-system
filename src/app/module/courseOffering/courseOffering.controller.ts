@@ -15,6 +15,24 @@ const getAllCourseOffering = catchAsync(async (req: Request, res: Response) => {
 	});
 });
 
+const updateCourseOffering = catchAsync(async (req: Request, res: Response) => {
+	const payload = req.body;
+	const { id } = req.params;
+
+	const result = await CourseOfferingService.updateCourseOffering(
+		payload,
+		id as string,
+	);
+
+	sendResponse(res, {
+		statusCode: httpStatus.OK,
+		success: true,
+		message: "Course Offering Created successfully",
+		data: result,
+	});
+});
+
 export const CourseOfferingController = {
 	getAllCourseOffering,
+	updateCourseOffering,
 };

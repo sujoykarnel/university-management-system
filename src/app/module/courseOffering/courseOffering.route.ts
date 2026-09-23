@@ -11,4 +11,11 @@ router.get(
 	CourseOfferingController.getAllCourseOffering,
 );
 
+router.patch(
+	"/:id",
+	auth(Role.ADMIN),
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	CourseOfferingController.updateCourseOffering,
+);
+
 export const CourseOfferingRoutes = router;
