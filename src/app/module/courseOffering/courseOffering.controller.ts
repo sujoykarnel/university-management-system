@@ -5,13 +5,16 @@ import { sendResponse } from "../../utils/sendResponse";
 import { CourseOfferingService } from "./courseOffering.service";
 
 const getAllCourseOffering = catchAsync(async (req: Request, res: Response) => {
-	const result = await CourseOfferingService.getAllCourseOffering();
+	const { data, meta } = await CourseOfferingService.getAllCourseOffering(
+		req.query,
+	);
 
 	sendResponse(res, {
 		statusCode: httpStatus.OK,
 		success: true,
 		message: "Course Offering fetched successfully",
-		data: result,
+		data,
+		meta,
 	});
 });
 
@@ -27,12 +30,30 @@ const updateCourseOffering = catchAsync(async (req: Request, res: Response) => {
 	sendResponse(res, {
 		statusCode: httpStatus.OK,
 		success: true,
-		message: "Course Offering Created successfully",
+		message: "Course Offering Updated successfully",
 		data: result,
 	});
 });
 
+const deletedCourseOffering = catchAsync(
+	async (req: Request, res: Response) => {
+		const { id } = req.params;
+
+		const result = await CourseOfferingService.deleteOfferingCourse(
+			id as string,
+		);
+
+		sendResponse(res, {
+			statusCode: httpStatus.OK,
+			success: true,
+			message: "Course Offering Deleted successfully",
+			data: result,
+		});
+	},
+);
+
 export const CourseOfferingController = {
 	getAllCourseOffering,
 	updateCourseOffering,
+	deletedCourseOffering,
 };

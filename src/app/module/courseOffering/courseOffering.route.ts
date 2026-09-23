@@ -18,4 +18,11 @@ router.patch(
 	CourseOfferingController.updateCourseOffering,
 );
 
+router.delete(
+	"/:id",
+	auth(Role.ADMIN),
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	CourseOfferingController.deletedCourseOffering,
+);
+
 export const CourseOfferingRoutes = router;
