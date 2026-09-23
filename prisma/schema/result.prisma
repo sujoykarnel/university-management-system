@@ -1,7 +1,6 @@
 model Result {
   id String @id @default(uuid())
 
-
   examId String
   exam   Exam   @relation(fields: [examId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
@@ -25,7 +24,5 @@ model Result {
   @@unique([examId, courseRegistrationId])
   @@index([examId])
   @@index([courseRegistrationId])
-
   @@map("results")
-
 }

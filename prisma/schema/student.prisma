@@ -7,9 +7,8 @@ model Student {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-
-
   courseRegistration CourseRegistration[]
+  transcript         Transcript[]
 
   admistionYear   Int?
   currentSemester Int?

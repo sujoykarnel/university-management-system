@@ -10,8 +10,7 @@ model CourseRegistration {
 
   payment     Payment?
   attendances Attendance[]
-  results Result[]
-
+  results     Result[]
 
   @@unique([studentId, courseOfferingId], name: "unique_registration_studentId_course")
   @@index([studentId, courseOfferingId], name: "idx_registration_studentId_course")
