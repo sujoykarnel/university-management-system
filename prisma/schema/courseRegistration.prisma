@@ -12,6 +12,12 @@ model CourseRegistration {
   attendances Attendance[]
   results     Result[]
 
+  isDelete Boolean   @default(false)
+  deleteAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@unique([studentId, courseOfferingId], name: "unique_registration_studentId_course")
   @@index([studentId, courseOfferingId], name: "idx_registration_studentId_course")
   @@map("courseRegistration")

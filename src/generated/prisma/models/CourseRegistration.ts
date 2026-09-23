@@ -29,6 +29,10 @@ export type CourseRegistrationMinAggregateOutputType = {
   status: $Enums.RegistrationStatus | null
   studentId: string | null
   courseOfferingId: string | null
+  isDelete: boolean | null
+  deleteAt: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type CourseRegistrationMaxAggregateOutputType = {
@@ -36,6 +40,10 @@ export type CourseRegistrationMaxAggregateOutputType = {
   status: $Enums.RegistrationStatus | null
   studentId: string | null
   courseOfferingId: string | null
+  isDelete: boolean | null
+  deleteAt: Date | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type CourseRegistrationCountAggregateOutputType = {
@@ -43,6 +51,10 @@ export type CourseRegistrationCountAggregateOutputType = {
   status: number
   studentId: number
   courseOfferingId: number
+  isDelete: number
+  deleteAt: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -52,6 +64,10 @@ export type CourseRegistrationMinAggregateInputType = {
   status?: true
   studentId?: true
   courseOfferingId?: true
+  isDelete?: true
+  deleteAt?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type CourseRegistrationMaxAggregateInputType = {
@@ -59,6 +75,10 @@ export type CourseRegistrationMaxAggregateInputType = {
   status?: true
   studentId?: true
   courseOfferingId?: true
+  isDelete?: true
+  deleteAt?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type CourseRegistrationCountAggregateInputType = {
@@ -66,6 +86,10 @@ export type CourseRegistrationCountAggregateInputType = {
   status?: true
   studentId?: true
   courseOfferingId?: true
+  isDelete?: true
+  deleteAt?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -146,6 +170,10 @@ export type CourseRegistrationGroupByOutputType = {
   status: $Enums.RegistrationStatus
   studentId: string
   courseOfferingId: string
+  isDelete: boolean
+  deleteAt: Date | null
+  createdAt: Date
+  updatedAt: Date
   _count: CourseRegistrationCountAggregateOutputType | null
   _min: CourseRegistrationMinAggregateOutputType | null
   _max: CourseRegistrationMaxAggregateOutputType | null
@@ -174,6 +202,10 @@ export type CourseRegistrationWhereInput = {
   status?: Prisma.EnumRegistrationStatusFilter<"CourseRegistration"> | $Enums.RegistrationStatus
   studentId?: Prisma.StringFilter<"CourseRegistration"> | string
   courseOfferingId?: Prisma.StringFilter<"CourseRegistration"> | string
+  isDelete?: Prisma.BoolFilter<"CourseRegistration"> | boolean
+  deleteAt?: Prisma.DateTimeNullableFilter<"CourseRegistration"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"CourseRegistration"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"CourseRegistration"> | Date | string
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   courseOffering?: Prisma.XOR<Prisma.CourseOfferingScalarRelationFilter, Prisma.CourseOfferingWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
@@ -186,6 +218,10 @@ export type CourseRegistrationOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   courseOfferingId?: Prisma.SortOrder
+  isDelete?: Prisma.SortOrder
+  deleteAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   student?: Prisma.StudentOrderByWithRelationInput
   courseOffering?: Prisma.CourseOfferingOrderByWithRelationInput
   payment?: Prisma.PaymentOrderByWithRelationInput
@@ -202,6 +238,10 @@ export type CourseRegistrationWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumRegistrationStatusFilter<"CourseRegistration"> | $Enums.RegistrationStatus
   studentId?: Prisma.StringFilter<"CourseRegistration"> | string
   courseOfferingId?: Prisma.StringFilter<"CourseRegistration"> | string
+  isDelete?: Prisma.BoolFilter<"CourseRegistration"> | boolean
+  deleteAt?: Prisma.DateTimeNullableFilter<"CourseRegistration"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"CourseRegistration"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"CourseRegistration"> | Date | string
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   courseOffering?: Prisma.XOR<Prisma.CourseOfferingScalarRelationFilter, Prisma.CourseOfferingWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
@@ -214,6 +254,10 @@ export type CourseRegistrationOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   courseOfferingId?: Prisma.SortOrder
+  isDelete?: Prisma.SortOrder
+  deleteAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.CourseRegistrationCountOrderByAggregateInput
   _max?: Prisma.CourseRegistrationMaxOrderByAggregateInput
   _min?: Prisma.CourseRegistrationMinOrderByAggregateInput
@@ -227,11 +271,19 @@ export type CourseRegistrationScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumRegistrationStatusWithAggregatesFilter<"CourseRegistration"> | $Enums.RegistrationStatus
   studentId?: Prisma.StringWithAggregatesFilter<"CourseRegistration"> | string
   courseOfferingId?: Prisma.StringWithAggregatesFilter<"CourseRegistration"> | string
+  isDelete?: Prisma.BoolWithAggregatesFilter<"CourseRegistration"> | boolean
+  deleteAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CourseRegistration"> | Date | string | null
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"CourseRegistration"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CourseRegistration"> | Date | string
 }
 
 export type CourseRegistrationCreateInput = {
   id?: string
   status?: $Enums.RegistrationStatus
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
   courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
@@ -244,6 +296,10 @@ export type CourseRegistrationUncheckedCreateInput = {
   status?: $Enums.RegistrationStatus
   studentId: string
   courseOfferingId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
@@ -252,6 +308,10 @@ export type CourseRegistrationUncheckedCreateInput = {
 export type CourseRegistrationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
   courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
@@ -264,6 +324,10 @@ export type CourseRegistrationUncheckedUpdateInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
@@ -274,11 +338,19 @@ export type CourseRegistrationCreateManyInput = {
   status?: $Enums.RegistrationStatus
   studentId: string
   courseOfferingId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CourseRegistrationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CourseRegistrationUncheckedUpdateManyInput = {
@@ -286,6 +358,10 @@ export type CourseRegistrationUncheckedUpdateManyInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CourseRegistrationScalarRelationFilter = {
@@ -313,6 +389,10 @@ export type CourseRegistrationCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   courseOfferingId?: Prisma.SortOrder
+  isDelete?: Prisma.SortOrder
+  deleteAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CourseRegistrationMaxOrderByAggregateInput = {
@@ -320,6 +400,10 @@ export type CourseRegistrationMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   courseOfferingId?: Prisma.SortOrder
+  isDelete?: Prisma.SortOrder
+  deleteAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CourseRegistrationMinOrderByAggregateInput = {
@@ -327,6 +411,10 @@ export type CourseRegistrationMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   studentId?: Prisma.SortOrder
   courseOfferingId?: Prisma.SortOrder
+  isDelete?: Prisma.SortOrder
+  deleteAt?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type CourseRegistrationCreateNestedOneWithoutAttendancesInput = {
@@ -462,6 +550,10 @@ export type CourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput = {
 export type CourseRegistrationCreateWithoutAttendancesInput = {
   id?: string
   status?: $Enums.RegistrationStatus
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
   courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
@@ -473,6 +565,10 @@ export type CourseRegistrationUncheckedCreateWithoutAttendancesInput = {
   status?: $Enums.RegistrationStatus
   studentId: string
   courseOfferingId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
 }
@@ -496,6 +592,10 @@ export type CourseRegistrationUpdateToOneWithWhereWithoutAttendancesInput = {
 export type CourseRegistrationUpdateWithoutAttendancesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
   courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
@@ -507,6 +607,10 @@ export type CourseRegistrationUncheckedUpdateWithoutAttendancesInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
 }
@@ -514,6 +618,10 @@ export type CourseRegistrationUncheckedUpdateWithoutAttendancesInput = {
 export type CourseRegistrationCreateWithoutCourseOfferingInput = {
   id?: string
   status?: $Enums.RegistrationStatus
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutCourseRegistrationInput
@@ -524,6 +632,10 @@ export type CourseRegistrationUncheckedCreateWithoutCourseOfferingInput = {
   id?: string
   status?: $Enums.RegistrationStatus
   studentId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
@@ -563,11 +675,19 @@ export type CourseRegistrationScalarWhereInput = {
   status?: Prisma.EnumRegistrationStatusFilter<"CourseRegistration"> | $Enums.RegistrationStatus
   studentId?: Prisma.StringFilter<"CourseRegistration"> | string
   courseOfferingId?: Prisma.StringFilter<"CourseRegistration"> | string
+  isDelete?: Prisma.BoolFilter<"CourseRegistration"> | boolean
+  deleteAt?: Prisma.DateTimeNullableFilter<"CourseRegistration"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"CourseRegistration"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"CourseRegistration"> | Date | string
 }
 
 export type CourseRegistrationCreateWithoutPaymentInput = {
   id?: string
   status?: $Enums.RegistrationStatus
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
   courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutCourseRegistrationInput
@@ -579,6 +699,10 @@ export type CourseRegistrationUncheckedCreateWithoutPaymentInput = {
   status?: $Enums.RegistrationStatus
   studentId: string
   courseOfferingId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
 }
@@ -602,6 +726,10 @@ export type CourseRegistrationUpdateToOneWithWhereWithoutPaymentInput = {
 export type CourseRegistrationUpdateWithoutPaymentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
   courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutCourseRegistrationNestedInput
@@ -613,6 +741,10 @@ export type CourseRegistrationUncheckedUpdateWithoutPaymentInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
 }
@@ -620,6 +752,10 @@ export type CourseRegistrationUncheckedUpdateWithoutPaymentInput = {
 export type CourseRegistrationCreateWithoutResultsInput = {
   id?: string
   status?: $Enums.RegistrationStatus
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
   courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
@@ -631,6 +767,10 @@ export type CourseRegistrationUncheckedCreateWithoutResultsInput = {
   status?: $Enums.RegistrationStatus
   studentId: string
   courseOfferingId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
 }
@@ -654,6 +794,10 @@ export type CourseRegistrationUpdateToOneWithWhereWithoutResultsInput = {
 export type CourseRegistrationUpdateWithoutResultsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
   courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
@@ -665,6 +809,10 @@ export type CourseRegistrationUncheckedUpdateWithoutResultsInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
 }
@@ -672,6 +820,10 @@ export type CourseRegistrationUncheckedUpdateWithoutResultsInput = {
 export type CourseRegistrationCreateWithoutStudentInput = {
   id?: string
   status?: $Enums.RegistrationStatus
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
   attendances?: Prisma.AttendanceCreateNestedManyWithoutCourseRegistrationInput
@@ -682,6 +834,10 @@ export type CourseRegistrationUncheckedCreateWithoutStudentInput = {
   id?: string
   status?: $Enums.RegistrationStatus
   courseOfferingId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
   attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
   results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
@@ -717,11 +873,19 @@ export type CourseRegistrationCreateManyCourseOfferingInput = {
   id?: string
   status?: $Enums.RegistrationStatus
   studentId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CourseRegistrationUpdateWithoutCourseOfferingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutCourseRegistrationNestedInput
@@ -732,6 +896,10 @@ export type CourseRegistrationUncheckedUpdateWithoutCourseOfferingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
@@ -741,17 +909,29 @@ export type CourseRegistrationUncheckedUpdateManyWithoutCourseOfferingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CourseRegistrationCreateManyStudentInput = {
   id?: string
   status?: $Enums.RegistrationStatus
   courseOfferingId: string
+  isDelete?: boolean
+  deleteAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type CourseRegistrationUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
   attendances?: Prisma.AttendanceUpdateManyWithoutCourseRegistrationNestedInput
@@ -762,6 +942,10 @@ export type CourseRegistrationUncheckedUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
   attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
   results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
@@ -771,6 +955,10 @@ export type CourseRegistrationUncheckedUpdateManyWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deleteAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -818,6 +1006,10 @@ export type CourseRegistrationSelect<ExtArgs extends runtime.Types.Extensions.In
   status?: boolean
   studentId?: boolean
   courseOfferingId?: boolean
+  isDelete?: boolean
+  deleteAt?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.CourseRegistration$paymentArgs<ExtArgs>
@@ -831,6 +1023,10 @@ export type CourseRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.
   status?: boolean
   studentId?: boolean
   courseOfferingId?: boolean
+  isDelete?: boolean
+  deleteAt?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["courseRegistration"]>
@@ -840,6 +1036,10 @@ export type CourseRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.
   status?: boolean
   studentId?: boolean
   courseOfferingId?: boolean
+  isDelete?: boolean
+  deleteAt?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["courseRegistration"]>
@@ -849,9 +1049,13 @@ export type CourseRegistrationSelectScalar = {
   status?: boolean
   studentId?: boolean
   courseOfferingId?: boolean
+  isDelete?: boolean
+  deleteAt?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type CourseRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "studentId" | "courseOfferingId", ExtArgs["result"]["courseRegistration"]>
+export type CourseRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "status" | "studentId" | "courseOfferingId" | "isDelete" | "deleteAt" | "createdAt" | "updatedAt", ExtArgs["result"]["courseRegistration"]>
 export type CourseRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
@@ -883,6 +1087,10 @@ export type $CourseRegistrationPayload<ExtArgs extends runtime.Types.Extensions.
     status: $Enums.RegistrationStatus
     studentId: string
     courseOfferingId: string
+    isDelete: boolean
+    deleteAt: Date | null
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["courseRegistration"]>
   composites: {}
 }
@@ -1315,6 +1523,10 @@ export interface CourseRegistrationFieldRefs {
   readonly status: Prisma.FieldRef<"CourseRegistration", 'RegistrationStatus'>
   readonly studentId: Prisma.FieldRef<"CourseRegistration", 'String'>
   readonly courseOfferingId: Prisma.FieldRef<"CourseRegistration", 'String'>
+  readonly isDelete: Prisma.FieldRef<"CourseRegistration", 'Boolean'>
+  readonly deleteAt: Prisma.FieldRef<"CourseRegistration", 'DateTime'>
+  readonly createdAt: Prisma.FieldRef<"CourseRegistration", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"CourseRegistration", 'DateTime'>
 }
     
 

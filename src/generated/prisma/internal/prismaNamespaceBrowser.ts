@@ -136,7 +136,11 @@ export const CourseRegistrationScalarFieldEnum = {
   id: 'id',
   status: 'status',
   studentId: 'studentId',
-  courseOfferingId: 'courseOfferingId'
+  courseOfferingId: 'courseOfferingId',
+  isDelete: 'isDelete',
+  deleteAt: 'deleteAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type CourseRegistrationScalarFieldEnum = (typeof CourseRegistrationScalarFieldEnum)[keyof typeof CourseRegistrationScalarFieldEnum]

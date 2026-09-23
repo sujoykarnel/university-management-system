@@ -3033,7 +3033,7 @@ app.use("/api/v1/exam", ExamRoutes);
 app.use("/api/v1/result", ResultRoutes);
 app.use("/api/v1/transcript", TranscriptRoutes);
 app.get("/", async (req, res) => {
-  res.send(httpStatus24.OK).json({
+  res.status(httpStatus24.OK).json({
     success: true,
     message: "Welcome University Management System Backend"
   });

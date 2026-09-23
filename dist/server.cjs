@@ -3056,7 +3056,7 @@ app.use("/api/v1/exam", ExamRoutes);
 app.use("/api/v1/result", ResultRoutes);
 app.use("/api/v1/transcript", TranscriptRoutes);
 app.get("/", async (req, res) => {
-  res.send(import_http_status24.default.OK).json({
+  res.status(import_http_status24.default.OK).json({
     success: true,
     message: "Welcome University Management System Backend"
   });
