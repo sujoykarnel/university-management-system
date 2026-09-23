@@ -10,12 +10,13 @@ import config from "./app/config";
 import { globalErrorHandler } from "./app/middleware/globalErrorHandler";
 import { notFound } from "./app/middleware/notFound";
 import { AdminRoutes } from "./app/module/admin/admin.route";
+import { AttendanceRoutes } from "./app/module/attendance/attendance.route";
 import { AuthRoutes } from "./app/module/auth/auth.route";
 import { CourseOfferingRoutes } from "./app/module/courseOffering/courseOffering.route";
 import { CourseRegistrationRoutes } from "./app/module/courseRegistration/courseRegistration.route";
+import { ExamRoutes } from "./app/module/exam/exam.route";
 import { SemesterRoutes } from "./app/module/semester/semester.route";
 import { UserRoutes } from "./app/module/user/user.route";
-import { AttendanceRoutes } from "./app/module/attendance/attendance.route";
 
 const app: Application = express();
 
@@ -41,6 +42,7 @@ app.use("/api/v1/course-offering", CourseOfferingRoutes);
 app.use("/api/v1/semester", SemesterRoutes);
 app.use("/api/v1/course-registration", CourseRegistrationRoutes);
 app.use("/api/v1/attendance", AttendanceRoutes);
+app.use("/api/v1/exam", ExamRoutes);
 
 app.get("/", async (req: Request, res: Response) => {
 	res.send(httpStatus.OK).json({

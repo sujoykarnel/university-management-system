@@ -4,4 +4,5 @@ export interface IExamCreatePayload {
 	type: ExamType;
 	toalMarks: number;
 	examDate: string;
+  courseOfferingId: string
 }
