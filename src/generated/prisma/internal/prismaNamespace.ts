@@ -409,6 +409,7 @@ export const ModelName = {
   Result: 'Result',
   Semester: 'Semester',
   Student: 'Student',
+  Transcript: 'Transcript',
   University: 'University',
   User: 'User'
 } as const
@@ -426,7 +427,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "attendance" | "course" | "courseOffering" | "courseRegistration" | "department" | "exam" | "instructor" | "payment" | "program" | "result" | "semester" | "student" | "university" | "user"
+    modelProps: "attendance" | "course" | "courseOffering" | "courseRegistration" | "department" | "exam" | "instructor" | "payment" | "program" | "result" | "semester" | "student" | "transcript" | "university" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1318,6 +1319,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Transcript: {
+      payload: Prisma.$TranscriptPayload<ExtArgs>
+      fields: Prisma.TranscriptFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TranscriptFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TranscriptFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>
+        }
+        findFirst: {
+          args: Prisma.TranscriptFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TranscriptFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>
+        }
+        findMany: {
+          args: Prisma.TranscriptFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>[]
+        }
+        create: {
+          args: Prisma.TranscriptCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>
+        }
+        createMany: {
+          args: Prisma.TranscriptCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TranscriptCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>[]
+        }
+        delete: {
+          args: Prisma.TranscriptDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>
+        }
+        update: {
+          args: Prisma.TranscriptUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>
+        }
+        deleteMany: {
+          args: Prisma.TranscriptDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TranscriptUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TranscriptUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>[]
+        }
+        upsert: {
+          args: Prisma.TranscriptUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TranscriptPayload>
+        }
+        aggregate: {
+          args: Prisma.TranscriptAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTranscript>
+        }
+        groupBy: {
+          args: Prisma.TranscriptGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TranscriptGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TranscriptCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TranscriptCountAggregateOutputType> | number
+        }
+      }
+    }
     University: {
       payload: Prisma.$UniversityPayload<ExtArgs>
       fields: Prisma.UniversityFieldRefs
@@ -1701,6 +1776,23 @@ export const StudentScalarFieldEnum = {
 } as const
 
 export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
+
+
+export const TranscriptScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  semesterId: 'semesterId',
+  totalCredit: 'totalCredit',
+  earnedCredit: 'earnedCredit',
+  gpa: 'gpa',
+  cgpa: 'cgpa',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TranscriptScalarFieldEnum = (typeof TranscriptScalarFieldEnum)[keyof typeof TranscriptScalarFieldEnum]
 
 
 export const UniversityScalarFieldEnum = {
@@ -2168,6 +2260,7 @@ export type GlobalOmitConfig = {
   result?: Prisma.ResultOmit
   semester?: Prisma.SemesterOmit
   student?: Prisma.StudentOmit
+  transcript?: Prisma.TranscriptOmit
   university?: Prisma.UniversityOmit
   user?: Prisma.UserOmit
 }

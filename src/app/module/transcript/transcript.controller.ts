@@ -2,21 +2,21 @@ import type { Request, Response } from "express";
 import httpStatus from "http-status";
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
-import { ResultService } from "./result.service";
+import { TranscriptService } from "./transcript.service";
 
-const createResult = catchAsync(async (req: Request, res: Response) => {
+const createTranscript = catchAsync(async (req: Request, res: Response) => {
 	const payload = req.body;
 
-	const result = await ResultService.createResult(payload);
+	const result = await TranscriptService.createTranscript(payload);
 
 	sendResponse(res, {
 		statusCode: httpStatus.OK,
 		success: true,
-		message: "Result Created successfully",
+		message: "Transcript Created successfully",
 		data: result,
 	});
 });
 
-export const ResultController = {
-	createResult,
+export const TranscriptController = {
+	createTranscript,
 };

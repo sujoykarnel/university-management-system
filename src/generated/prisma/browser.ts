@@ -78,6 +78,11 @@ export type Semester = Prisma.SemesterModel
  */
 export type Student = Prisma.StudentModel
 /**
+ * Model Transcript
+ * 
+ */
+export type Transcript = Prisma.TranscriptModel
+/**
  * Model University
  * 
  */

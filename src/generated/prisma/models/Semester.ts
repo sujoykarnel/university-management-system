@@ -257,6 +257,7 @@ export type SemesterWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   courseOfferings?: Prisma.CourseOfferingListRelationFilter
+  transcript?: Prisma.TranscriptListRelationFilter
 }
 
 export type SemesterOrderByWithRelationInput = {
@@ -271,6 +272,7 @@ export type SemesterOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   courseOfferings?: Prisma.CourseOfferingOrderByRelationAggregateInput
+  transcript?: Prisma.TranscriptOrderByRelationAggregateInput
 }
 
 export type SemesterWhereUniqueInput = Prisma.AtLeast<{
@@ -288,6 +290,7 @@ export type SemesterWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Semester"> | Date | string
   courseOfferings?: Prisma.CourseOfferingListRelationFilter
+  transcript?: Prisma.TranscriptListRelationFilter
 }, "id">
 
 export type SemesterOrderByWithAggregationInput = {
@@ -336,6 +339,7 @@ export type SemesterCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   courseOfferings?: Prisma.CourseOfferingCreateNestedManyWithoutSemesterInput
+  transcript?: Prisma.TranscriptCreateNestedManyWithoutSemesterInput
 }
 
 export type SemesterUncheckedCreateInput = {
@@ -350,6 +354,7 @@ export type SemesterUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   courseOfferings?: Prisma.CourseOfferingUncheckedCreateNestedManyWithoutSemesterInput
+  transcript?: Prisma.TranscriptUncheckedCreateNestedManyWithoutSemesterInput
 }
 
 export type SemesterUpdateInput = {
@@ -364,6 +369,7 @@ export type SemesterUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courseOfferings?: Prisma.CourseOfferingUpdateManyWithoutSemesterNestedInput
+  transcript?: Prisma.TranscriptUpdateManyWithoutSemesterNestedInput
 }
 
 export type SemesterUncheckedUpdateInput = {
@@ -378,6 +384,7 @@ export type SemesterUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courseOfferings?: Prisma.CourseOfferingUncheckedUpdateManyWithoutSemesterNestedInput
+  transcript?: Prisma.TranscriptUncheckedUpdateManyWithoutSemesterNestedInput
 }
 
 export type SemesterCreateManyInput = {
@@ -489,6 +496,20 @@ export type EnumSemesterStatusFieldUpdateOperationsInput = {
   set?: $Enums.SemesterStatus
 }
 
+export type SemesterCreateNestedOneWithoutTranscriptInput = {
+  create?: Prisma.XOR<Prisma.SemesterCreateWithoutTranscriptInput, Prisma.SemesterUncheckedCreateWithoutTranscriptInput>
+  connectOrCreate?: Prisma.SemesterCreateOrConnectWithoutTranscriptInput
+  connect?: Prisma.SemesterWhereUniqueInput
+}
+
+export type SemesterUpdateOneRequiredWithoutTranscriptNestedInput = {
+  create?: Prisma.XOR<Prisma.SemesterCreateWithoutTranscriptInput, Prisma.SemesterUncheckedCreateWithoutTranscriptInput>
+  connectOrCreate?: Prisma.SemesterCreateOrConnectWithoutTranscriptInput
+  upsert?: Prisma.SemesterUpsertWithoutTranscriptInput
+  connect?: Prisma.SemesterWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SemesterUpdateToOneWithWhereWithoutTranscriptInput, Prisma.SemesterUpdateWithoutTranscriptInput>, Prisma.SemesterUncheckedUpdateWithoutTranscriptInput>
+}
+
 export type SemesterCreateWithoutCourseOfferingsInput = {
   id?: string
   name: string
@@ -500,6 +521,7 @@ export type SemesterCreateWithoutCourseOfferingsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  transcript?: Prisma.TranscriptCreateNestedManyWithoutSemesterInput
 }
 
 export type SemesterUncheckedCreateWithoutCourseOfferingsInput = {
@@ -513,6 +535,7 @@ export type SemesterUncheckedCreateWithoutCourseOfferingsInput = {
   deletedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  transcript?: Prisma.TranscriptUncheckedCreateNestedManyWithoutSemesterInput
 }
 
 export type SemesterCreateOrConnectWithoutCourseOfferingsInput = {
@@ -542,6 +565,7 @@ export type SemesterUpdateWithoutCourseOfferingsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  transcript?: Prisma.TranscriptUpdateManyWithoutSemesterNestedInput
 }
 
 export type SemesterUncheckedUpdateWithoutCourseOfferingsInput = {
@@ -555,6 +579,79 @@ export type SemesterUncheckedUpdateWithoutCourseOfferingsInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  transcript?: Prisma.TranscriptUncheckedUpdateManyWithoutSemesterNestedInput
+}
+
+export type SemesterCreateWithoutTranscriptInput = {
+  id?: string
+  name: string
+  year: number
+  startDate: Date | string
+  endDate: Date | string
+  status?: $Enums.SemesterStatus
+  isDelete?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  courseOfferings?: Prisma.CourseOfferingCreateNestedManyWithoutSemesterInput
+}
+
+export type SemesterUncheckedCreateWithoutTranscriptInput = {
+  id?: string
+  name: string
+  year: number
+  startDate: Date | string
+  endDate: Date | string
+  status?: $Enums.SemesterStatus
+  isDelete?: boolean
+  deletedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  courseOfferings?: Prisma.CourseOfferingUncheckedCreateNestedManyWithoutSemesterInput
+}
+
+export type SemesterCreateOrConnectWithoutTranscriptInput = {
+  where: Prisma.SemesterWhereUniqueInput
+  create: Prisma.XOR<Prisma.SemesterCreateWithoutTranscriptInput, Prisma.SemesterUncheckedCreateWithoutTranscriptInput>
+}
+
+export type SemesterUpsertWithoutTranscriptInput = {
+  update: Prisma.XOR<Prisma.SemesterUpdateWithoutTranscriptInput, Prisma.SemesterUncheckedUpdateWithoutTranscriptInput>
+  create: Prisma.XOR<Prisma.SemesterCreateWithoutTranscriptInput, Prisma.SemesterUncheckedCreateWithoutTranscriptInput>
+  where?: Prisma.SemesterWhereInput
+}
+
+export type SemesterUpdateToOneWithWhereWithoutTranscriptInput = {
+  where?: Prisma.SemesterWhereInput
+  data: Prisma.XOR<Prisma.SemesterUpdateWithoutTranscriptInput, Prisma.SemesterUncheckedUpdateWithoutTranscriptInput>
+}
+
+export type SemesterUpdateWithoutTranscriptInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumSemesterStatusFieldUpdateOperationsInput | $Enums.SemesterStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  courseOfferings?: Prisma.CourseOfferingUpdateManyWithoutSemesterNestedInput
+}
+
+export type SemesterUncheckedUpdateWithoutTranscriptInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumSemesterStatusFieldUpdateOperationsInput | $Enums.SemesterStatus
+  isDelete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  courseOfferings?: Prisma.CourseOfferingUncheckedUpdateManyWithoutSemesterNestedInput
 }
 
 
@@ -564,10 +661,12 @@ export type SemesterUncheckedUpdateWithoutCourseOfferingsInput = {
 
 export type SemesterCountOutputType = {
   courseOfferings: number
+  transcript: number
 }
 
 export type SemesterCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courseOfferings?: boolean | SemesterCountOutputTypeCountCourseOfferingsArgs
+  transcript?: boolean | SemesterCountOutputTypeCountTranscriptArgs
 }
 
 /**
@@ -587,6 +686,13 @@ export type SemesterCountOutputTypeCountCourseOfferingsArgs<ExtArgs extends runt
   where?: Prisma.CourseOfferingWhereInput
 }
 
+/**
+ * SemesterCountOutputType without action
+ */
+export type SemesterCountOutputTypeCountTranscriptArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TranscriptWhereInput
+}
+
 
 export type SemesterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -600,6 +706,7 @@ export type SemesterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   courseOfferings?: boolean | Prisma.Semester$courseOfferingsArgs<ExtArgs>
+  transcript?: boolean | Prisma.Semester$transcriptArgs<ExtArgs>
   _count?: boolean | Prisma.SemesterCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["semester"]>
 
@@ -645,6 +752,7 @@ export type SemesterSelectScalar = {
 export type SemesterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year" | "startDate" | "endDate" | "status" | "isDelete" | "deletedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["semester"]>
 export type SemesterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courseOfferings?: boolean | Prisma.Semester$courseOfferingsArgs<ExtArgs>
+  transcript?: boolean | Prisma.Semester$transcriptArgs<ExtArgs>
   _count?: boolean | Prisma.SemesterCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SemesterIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -654,6 +762,7 @@ export type $SemesterPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Semester"
   objects: {
     courseOfferings: Prisma.$CourseOfferingPayload<ExtArgs>[]
+    transcript: Prisma.$TranscriptPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1061,6 +1170,7 @@ readonly fields: SemesterFieldRefs;
 export interface Prisma__SemesterClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   courseOfferings<T extends Prisma.Semester$courseOfferingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Semester$courseOfferingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CourseOfferingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  transcript<T extends Prisma.Semester$transcriptArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Semester$transcriptArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TranscriptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1514,6 +1624,30 @@ export type Semester$courseOfferingsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.CourseOfferingScalarFieldEnum | Prisma.CourseOfferingScalarFieldEnum[]
+}
+
+/**
+ * Semester.transcript
+ */
+export type Semester$transcriptArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Transcript
+   */
+  select?: Prisma.TranscriptSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Transcript
+   */
+  omit?: Prisma.TranscriptOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TranscriptInclude<ExtArgs> | null
+  where?: Prisma.TranscriptWhereInput
+  orderBy?: Prisma.TranscriptOrderByWithRelationInput | Prisma.TranscriptOrderByWithRelationInput[]
+  cursor?: Prisma.TranscriptWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TranscriptScalarFieldEnum | Prisma.TranscriptScalarFieldEnum[]
 }
 
 /**

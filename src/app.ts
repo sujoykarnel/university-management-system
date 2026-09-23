@@ -17,6 +17,7 @@ import { CourseRegistrationRoutes } from "./app/module/courseRegistration/course
 import { ExamRoutes } from "./app/module/exam/exam.route";
 import { ResultRoutes } from "./app/module/result/result.route";
 import { SemesterRoutes } from "./app/module/semester/semester.route";
+import { TranscriptRoutes } from "./app/module/transcript/transcript.route";
 import { UserRoutes } from "./app/module/user/user.route";
 
 const app: Application = express();
@@ -45,6 +46,7 @@ app.use("/api/v1/course-registration", CourseRegistrationRoutes);
 app.use("/api/v1/attendance", AttendanceRoutes);
 app.use("/api/v1/exam", ExamRoutes);
 app.use("/api/v1/result", ResultRoutes);
+app.use("/api/v1/transcript", TranscriptRoutes);
 
 app.get("/", async (req: Request, res: Response) => {
 	res.send(httpStatus.OK).json({

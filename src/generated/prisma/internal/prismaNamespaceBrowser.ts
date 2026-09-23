@@ -63,6 +63,7 @@ export const ModelName = {
   Result: 'Result',
   Semester: 'Semester',
   Student: 'Student',
+  Transcript: 'Transcript',
   University: 'University',
   User: 'User'
 } as const
@@ -279,6 +280,23 @@ export const StudentScalarFieldEnum = {
 } as const
 
 export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
+
+
+export const TranscriptScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  semesterId: 'semesterId',
+  totalCredit: 'totalCredit',
+  earnedCredit: 'earnedCredit',
+  gpa: 'gpa',
+  cgpa: 'cgpa',
+  isDeleted: 'isDeleted',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TranscriptScalarFieldEnum = (typeof TranscriptScalarFieldEnum)[keyof typeof TranscriptScalarFieldEnum]
 
 
 export const UniversityScalarFieldEnum = {
