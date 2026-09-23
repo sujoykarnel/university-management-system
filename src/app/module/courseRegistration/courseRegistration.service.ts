@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import httpStatus from "http-status";
 import PDFDocument from "pdfkit";
 import {
@@ -174,7 +175,23 @@ const courseRegistrationCallback = async (query: Record<string, any>) => {
 					},
 					include: {
 						student: true,
-						courseOffering: true,
+						courseOffering: {
+							include: {
+								course: {
+									include: {
+										program: {
+											include: {
+												department: {
+													include: {
+														university: true,
+													},
+												},
+											},
+										},
+									},
+								},
+							},
+						},
 					},
 				});
 
@@ -216,7 +233,10 @@ const courseRegistrationCallback = async (query: Record<string, any>) => {
 					},
 				});
 
-				const pdfDocument = new PDFDocument({ margin: 50 });
+				const pdfDocument = new PDFDocument({
+					size: "A4",
+					margin: 50,
+				});
 
 				const pdfChunks: Buffer[] = [];
 
@@ -224,33 +244,308 @@ const courseRegistrationCallback = async (query: Record<string, any>) => {
 					pdfChunks.push(chunk);
 				});
 
-				const pdfReadyPromise = new Promise<Buffer>((resolve) => {
+				const pdfReadyPromise = new Promise<Buffer>((resolve, reject) => {
 					pdfDocument.on("end", () => {
 						resolve(Buffer.concat(pdfChunks));
 					});
+
+					pdfDocument.on("error", reject);
 				});
 
+				// ==============================
+				// Helper Functions
+				// ==============================
+
+				const drawLine = (y: number) => {
+					pdfDocument
+						.strokeColor("#D1D5DB")
+						.lineWidth(1)
+						.moveTo(50, y)
+						.lineTo(545, y)
+						.stroke();
+				};
+
+				const drawLabelValue = (label: string, value: string, y: number) => {
+					pdfDocument
+						.fontSize(10)
+						.fillColor("#6B7280")
+						.font("Helvetica")
+						.text(label, 55, y, {
+							width: 150,
+						});
+
+					pdfDocument
+						.fontSize(10)
+						.fillColor("#111827")
+						.font("Helvetica-Bold")
+						.text(value || "N/A", 205, y, {
+							width: 330,
+						});
+				};
+
+				// ==============================
+				// Header
+				// ==============================
+
 				pdfDocument
+					.font("Helvetica-Bold")
 					.fontSize(20)
-					.text("PH Healthcare System", { align: "center" });
+					.fillColor("#111827")
+					.text("UNIVERSITY MANAGEMENT SYSTEM", {
+						align: "center",
+					});
+
 				pdfDocument
-					.fontSize(14)
-					.text("Appointment Invoice", { align: "center" });
+					.moveDown(0.3)
+					.font("Helvetica")
+					.fontSize(10)
+					.fillColor("#6B7280")
+					.text("UMS | Academic & Payment Management", {
+						align: "center",
+					});
+
+				pdfDocument.moveDown(1);
+
+				drawLine(pdfDocument.y);
+
+				pdfDocument.moveDown(1);
+
+				// ==============================
+				// Invoice Title
+				// ==============================
+
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(22)
+					.fillColor("#111827")
+					.text("PAYMENT INVOICE", {
+						align: "left",
+					});
+
+				pdfDocument
+					.font("Helvetica")
+					.fontSize(9)
+					.fillColor("#6B7280")
+					.text("Official payment receipt", 50, pdfDocument.y + 5);
+
+				// Payment status
+				pdfDocument
+					.roundedRect(455, 145, 90, 28, 5)
+					.fillColor("#DCFCE7")
+					.fill();
+
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(10)
+					.fillColor("#166534")
+					.text("PAID", 455, 154, {
+						width: 90,
+						align: "center",
+					});
+
 				pdfDocument.moveDown(2);
 
-				pdfDocument
-					.fontSize(12)
-					.text(`Patient Name: ${resitation.student?.name}`);
-				pdfDocument.text(`Patient Email: ${resitation.student?.email}`);
-				pdfDocument.moveDown();
+				// ==============================
+				// Invoice Information
+				// ==============================
 
-				pdfDocument.text(`Amount Paid: ${executedPaymentResult.amount} BDT`);
-				pdfDocument.text(`Payment Method: bKash`);
-				pdfDocument.text(`Transaction Id: ${executedPaymentResult.trxID}`);
-				pdfDocument.text(
-					`Paid At: ${executedPaymentResult.paymentExecuteTime}`,
+				const invoiceInfoY = pdfDocument.y;
+
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(10)
+					.fillColor("#111827")
+					.text("INVOICE INFORMATION", 50, invoiceInfoY);
+
+				drawLabelValue(
+					"Transaction ID",
+					executedPaymentResult.trxID,
+					invoiceInfoY + 25,
 				);
 
+				drawLabelValue("Payment Method", "bKash", invoiceInfoY + 43);
+
+				drawLabelValue(
+					"Payment Date",
+					format(executedPaymentResult.paymentExecuteTime, "dd-MMM-yyyy"),
+					invoiceInfoY + 61,
+				);
+
+				// ==============================
+				// Student / Patient Information
+				// ==============================
+
+				const studentInfoY = invoiceInfoY + 105;
+
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(10)
+					.fillColor("#111827")
+					.text("STUDENT INFORMATION", 50, studentInfoY);
+
+				drawLabelValue(
+					"Name",
+					resitation.student?.name ?? "N/A",
+					studentInfoY + 25,
+				);
+
+				drawLabelValue(
+					"Email",
+					resitation.student?.email ?? "N/A",
+					studentInfoY + 43,
+				);
+
+				// ==============================
+				// University Information
+				// ==============================
+
+				const universityName =
+					resitation.courseOffering.course.program.department.university.name;
+
+				const departmentName =
+					resitation.courseOffering.course.program.department.name;
+
+				const programName = resitation.courseOffering.course.program.name;
+
+				const courseName = resitation.courseOffering.course.title;
+
+				const academicInfoY = studentInfoY + 90;
+
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(10)
+					.fillColor("#111827")
+					.text("ACADEMIC INFORMATION", 50, academicInfoY);
+
+				drawLabelValue("University", universityName, academicInfoY + 25);
+
+				drawLabelValue("Department", departmentName, academicInfoY + 43);
+
+				drawLabelValue("Program", programName, academicInfoY + 61);
+
+				drawLabelValue("Course", courseName, academicInfoY + 79);
+
+				// ==============================
+				// Payment Summary
+				// ==============================
+
+				const summaryY = academicInfoY + 125;
+
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(12)
+					.fillColor("#111827")
+					.text("PAYMENT SUMMARY", 50, summaryY);
+
+				drawLine(summaryY + 22);
+
+				// Table Header
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(10)
+					.fillColor("#6B7280")
+					.text("DESCRIPTION", 55, summaryY + 35);
+
+				pdfDocument.text("AMOUNT", 430, summaryY + 35, {
+					width: 100,
+					align: "right",
+				});
+
+				drawLine(summaryY + 55);
+
+				// Payment Item
+				pdfDocument
+					.font("Helvetica")
+					.fontSize(10)
+					.fillColor("#111827")
+					.text("Course / Academic Payment", 55, summaryY + 70);
+
+				pdfDocument.text(
+					`${executedPaymentResult.amount} BDT`,
+					430,
+					summaryY + 70,
+					{
+						width: 100,
+						align: "right",
+					},
+				);
+
+				drawLine(summaryY + 95);
+
+				// Total
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(12)
+					.fillColor("#111827")
+					.text("TOTAL PAID", 55, summaryY + 112);
+
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(14)
+					.fillColor("#111827")
+					.text(`${executedPaymentResult.amount} BDT`, 400, summaryY + 110, {
+						width: 130,
+						align: "right",
+					});
+
+				// ==============================
+				// Payment Confirmation Box
+				// ==============================
+
+				const confirmationY = summaryY + 160;
+
+				pdfDocument
+					.roundedRect(50, confirmationY, 495, 65, 6)
+					.fillColor("#F0FDF4")
+					.fill();
+
+				pdfDocument
+					.font("Helvetica-Bold")
+					.fontSize(10)
+					.fillColor("#166534")
+					.text("PAYMENT CONFIRMED", 65, confirmationY + 15);
+
+				pdfDocument
+					.font("Helvetica")
+					.fontSize(9)
+					.fillColor("#166534")
+					.text(
+						"Your payment has been successfully processed through bKash.",
+						65,
+						confirmationY + 32,
+					);
+
+				// ==============================
+				// Footer
+				// ==============================
+
+				const footerY = 750;
+
+				drawLine(footerY);
+
+				pdfDocument
+					.font("Helvetica")
+					.fontSize(8)
+					.fillColor("#6B7280")
+					.text(
+						"This is a computer-generated invoice and does not require a signature.",
+						50,
+						footerY + 12,
+						{
+							align: "center",
+							width: 495,
+						},
+					);
+
+				pdfDocument
+					.fontSize(8)
+					.fillColor("#9CA3AF")
+					.text("University Management System (UMS)", 50, footerY + 27, {
+						align: "center",
+						width: 495,
+					});
+
+				// Finish PDF
 				pdfDocument.end();
 
 				const pdfBuffer = await pdfReadyPromise;
@@ -369,7 +664,7 @@ const payCourseRegistration = async (
 		);
 
 		const bkashCreatePaymentResult = await bkashCreatePaymentResponse.json();
-    
+
 		await tx.payment.update({
 			where: {
 				courseRegistationId: existingRegistraion.id,
@@ -385,7 +680,6 @@ const payCourseRegistration = async (
 		return {
 			paymentUrl: bkashCreatePaymentResult.bkashURL,
 		};
-
 	});
 
 	return transectionResult;
