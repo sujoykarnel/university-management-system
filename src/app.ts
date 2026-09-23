@@ -15,6 +15,7 @@ import { CourseOfferingRoutes } from "./app/module/courseOffering/courseOffering
 import { CourseRegistrationRoutes } from "./app/module/courseRegistration/courseRegistration.route";
 import { SemesterRoutes } from "./app/module/semester/semester.route";
 import { UserRoutes } from "./app/module/user/user.route";
+import { AttendanceRoutes } from "./app/module/attendance/attendance.route";
 
 const app: Application = express();
 
@@ -39,6 +40,7 @@ app.use("/api/v1/admin", AdminRoutes);
 app.use("/api/v1/course-offering", CourseOfferingRoutes);
 app.use("/api/v1/semester", SemesterRoutes);
 app.use("/api/v1/course-registration", CourseRegistrationRoutes);
+app.use("/api/v1/attendance", AttendanceRoutes);
 
 app.get("/", async (req: Request, res: Response) => {
 	res.send(httpStatus.OK).json({

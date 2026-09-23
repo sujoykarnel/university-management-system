@@ -82,3 +82,32 @@ export const SemesterStatus = {
 } as const
 
 export type SemesterStatus = (typeof SemesterStatus)[keyof typeof SemesterStatus]
+
+
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT',
+  LATE: 'LATE',
+  EXCUSED: 'EXCUSED'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
+export const ExamType = {
+  MIDTERM: 'MIDTERM',
+  FINAL: 'FINAL',
+  QUIZ: 'QUIZ',
+  ASSIGNMENT: 'ASSIGNMENT',
+  VIVA: 'VIVA'
+} as const
+
+export type ExamType = (typeof ExamType)[keyof typeof ExamType]
+
+
+export const resultStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED'
+} as const
+
+export type resultStatus = (typeof resultStatus)[keyof typeof resultStatus]

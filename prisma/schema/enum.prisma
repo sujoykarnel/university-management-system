@@ -26,7 +26,6 @@ enum RegistrationStatus {
   PENDING
   CONFIRMED
   CANCELED
- 
 }
 
 enum PaymentStatus {
@@ -48,4 +47,24 @@ enum SemesterStatus {
   ACTIVE
   COMPLETED
   CLOSED
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
+}
+
+enum ExamType {
+  MIDTERM
+  FINAL
+  QUIZ
+  ASSIGNMENT
+  VIVA
+}
+
+enum resultStatus {
+  DRAFT
+  PUBLISHED
 }

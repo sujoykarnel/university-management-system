@@ -15,6 +15,7 @@ model CourseOffering {
   availableSeat Int
 
   courseRegistration CourseRegistration[]
+  exams Exam[]
 
   isDelete Boolean   @default(false)
   deleteAt DateTime?

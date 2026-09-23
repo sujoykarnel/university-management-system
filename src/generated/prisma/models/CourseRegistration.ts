@@ -177,6 +177,8 @@ export type CourseRegistrationWhereInput = {
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   courseOffering?: Prisma.XOR<Prisma.CourseOfferingScalarRelationFilter, Prisma.CourseOfferingWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
+  attendances?: Prisma.AttendanceListRelationFilter
+  results?: Prisma.ResultListRelationFilter
 }
 
 export type CourseRegistrationOrderByWithRelationInput = {
@@ -187,6 +189,8 @@ export type CourseRegistrationOrderByWithRelationInput = {
   student?: Prisma.StudentOrderByWithRelationInput
   courseOffering?: Prisma.CourseOfferingOrderByWithRelationInput
   payment?: Prisma.PaymentOrderByWithRelationInput
+  attendances?: Prisma.AttendanceOrderByRelationAggregateInput
+  results?: Prisma.ResultOrderByRelationAggregateInput
 }
 
 export type CourseRegistrationWhereUniqueInput = Prisma.AtLeast<{
@@ -201,6 +205,8 @@ export type CourseRegistrationWhereUniqueInput = Prisma.AtLeast<{
   student?: Prisma.XOR<Prisma.StudentScalarRelationFilter, Prisma.StudentWhereInput>
   courseOffering?: Prisma.XOR<Prisma.CourseOfferingScalarRelationFilter, Prisma.CourseOfferingWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
+  attendances?: Prisma.AttendanceListRelationFilter
+  results?: Prisma.ResultListRelationFilter
 }, "id" | "unique_registration_studentId_course">
 
 export type CourseRegistrationOrderByWithAggregationInput = {
@@ -229,6 +235,8 @@ export type CourseRegistrationCreateInput = {
   student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
   courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCourseRegistrationInput
+  results?: Prisma.ResultCreateNestedManyWithoutCourseRegistrationInput
 }
 
 export type CourseRegistrationUncheckedCreateInput = {
@@ -237,6 +245,8 @@ export type CourseRegistrationUncheckedCreateInput = {
   studentId: string
   courseOfferingId: string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
+  results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
 }
 
 export type CourseRegistrationUpdateInput = {
@@ -245,6 +255,8 @@ export type CourseRegistrationUpdateInput = {
   student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
   courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUpdateManyWithoutCourseRegistrationNestedInput
 }
 
 export type CourseRegistrationUncheckedUpdateInput = {
@@ -253,6 +265,8 @@ export type CourseRegistrationUncheckedUpdateInput = {
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
 }
 
 export type CourseRegistrationCreateManyInput = {
@@ -272,6 +286,11 @@ export type CourseRegistrationUncheckedUpdateManyInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type CourseRegistrationScalarRelationFilter = {
+  is?: Prisma.CourseRegistrationWhereInput
+  isNot?: Prisma.CourseRegistrationWhereInput
 }
 
 export type CourseRegistrationListRelationFilter = {
@@ -310,9 +329,18 @@ export type CourseRegistrationMinOrderByAggregateInput = {
   courseOfferingId?: Prisma.SortOrder
 }
 
-export type CourseRegistrationScalarRelationFilter = {
-  is?: Prisma.CourseRegistrationWhereInput
-  isNot?: Prisma.CourseRegistrationWhereInput
+export type CourseRegistrationCreateNestedOneWithoutAttendancesInput = {
+  create?: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutAttendancesInput, Prisma.CourseRegistrationUncheckedCreateWithoutAttendancesInput>
+  connectOrCreate?: Prisma.CourseRegistrationCreateOrConnectWithoutAttendancesInput
+  connect?: Prisma.CourseRegistrationWhereUniqueInput
+}
+
+export type CourseRegistrationUpdateOneRequiredWithoutAttendancesNestedInput = {
+  create?: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutAttendancesInput, Prisma.CourseRegistrationUncheckedCreateWithoutAttendancesInput>
+  connectOrCreate?: Prisma.CourseRegistrationCreateOrConnectWithoutAttendancesInput
+  upsert?: Prisma.CourseRegistrationUpsertWithoutAttendancesInput
+  connect?: Prisma.CourseRegistrationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CourseRegistrationUpdateToOneWithWhereWithoutAttendancesInput, Prisma.CourseRegistrationUpdateWithoutAttendancesInput>, Prisma.CourseRegistrationUncheckedUpdateWithoutAttendancesInput>
 }
 
 export type CourseRegistrationCreateNestedManyWithoutCourseOfferingInput = {
@@ -375,6 +403,20 @@ export type CourseRegistrationUpdateOneRequiredWithoutPaymentNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CourseRegistrationUpdateToOneWithWhereWithoutPaymentInput, Prisma.CourseRegistrationUpdateWithoutPaymentInput>, Prisma.CourseRegistrationUncheckedUpdateWithoutPaymentInput>
 }
 
+export type CourseRegistrationCreateNestedOneWithoutResultsInput = {
+  create?: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutResultsInput, Prisma.CourseRegistrationUncheckedCreateWithoutResultsInput>
+  connectOrCreate?: Prisma.CourseRegistrationCreateOrConnectWithoutResultsInput
+  connect?: Prisma.CourseRegistrationWhereUniqueInput
+}
+
+export type CourseRegistrationUpdateOneRequiredWithoutResultsNestedInput = {
+  create?: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutResultsInput, Prisma.CourseRegistrationUncheckedCreateWithoutResultsInput>
+  connectOrCreate?: Prisma.CourseRegistrationCreateOrConnectWithoutResultsInput
+  upsert?: Prisma.CourseRegistrationUpsertWithoutResultsInput
+  connect?: Prisma.CourseRegistrationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CourseRegistrationUpdateToOneWithWhereWithoutResultsInput, Prisma.CourseRegistrationUpdateWithoutResultsInput>, Prisma.CourseRegistrationUncheckedUpdateWithoutResultsInput>
+}
+
 export type CourseRegistrationCreateNestedManyWithoutStudentInput = {
   create?: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutStudentInput, Prisma.CourseRegistrationUncheckedCreateWithoutStudentInput> | Prisma.CourseRegistrationCreateWithoutStudentInput[] | Prisma.CourseRegistrationUncheckedCreateWithoutStudentInput[]
   connectOrCreate?: Prisma.CourseRegistrationCreateOrConnectWithoutStudentInput | Prisma.CourseRegistrationCreateOrConnectWithoutStudentInput[]
@@ -417,11 +459,65 @@ export type CourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput = {
   deleteMany?: Prisma.CourseRegistrationScalarWhereInput | Prisma.CourseRegistrationScalarWhereInput[]
 }
 
+export type CourseRegistrationCreateWithoutAttendancesInput = {
+  id?: string
+  status?: $Enums.RegistrationStatus
+  student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
+  courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
+  results?: Prisma.ResultCreateNestedManyWithoutCourseRegistrationInput
+}
+
+export type CourseRegistrationUncheckedCreateWithoutAttendancesInput = {
+  id?: string
+  status?: $Enums.RegistrationStatus
+  studentId: string
+  courseOfferingId: string
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
+  results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
+}
+
+export type CourseRegistrationCreateOrConnectWithoutAttendancesInput = {
+  where: Prisma.CourseRegistrationWhereUniqueInput
+  create: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutAttendancesInput, Prisma.CourseRegistrationUncheckedCreateWithoutAttendancesInput>
+}
+
+export type CourseRegistrationUpsertWithoutAttendancesInput = {
+  update: Prisma.XOR<Prisma.CourseRegistrationUpdateWithoutAttendancesInput, Prisma.CourseRegistrationUncheckedUpdateWithoutAttendancesInput>
+  create: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutAttendancesInput, Prisma.CourseRegistrationUncheckedCreateWithoutAttendancesInput>
+  where?: Prisma.CourseRegistrationWhereInput
+}
+
+export type CourseRegistrationUpdateToOneWithWhereWithoutAttendancesInput = {
+  where?: Prisma.CourseRegistrationWhereInput
+  data: Prisma.XOR<Prisma.CourseRegistrationUpdateWithoutAttendancesInput, Prisma.CourseRegistrationUncheckedUpdateWithoutAttendancesInput>
+}
+
+export type CourseRegistrationUpdateWithoutAttendancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
+  courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUpdateManyWithoutCourseRegistrationNestedInput
+}
+
+export type CourseRegistrationUncheckedUpdateWithoutAttendancesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
+}
+
 export type CourseRegistrationCreateWithoutCourseOfferingInput = {
   id?: string
   status?: $Enums.RegistrationStatus
   student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCourseRegistrationInput
+  results?: Prisma.ResultCreateNestedManyWithoutCourseRegistrationInput
 }
 
 export type CourseRegistrationUncheckedCreateWithoutCourseOfferingInput = {
@@ -429,6 +525,8 @@ export type CourseRegistrationUncheckedCreateWithoutCourseOfferingInput = {
   status?: $Enums.RegistrationStatus
   studentId: string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
+  results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
 }
 
 export type CourseRegistrationCreateOrConnectWithoutCourseOfferingInput = {
@@ -472,6 +570,8 @@ export type CourseRegistrationCreateWithoutPaymentInput = {
   status?: $Enums.RegistrationStatus
   student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
   courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCourseRegistrationInput
+  results?: Prisma.ResultCreateNestedManyWithoutCourseRegistrationInput
 }
 
 export type CourseRegistrationUncheckedCreateWithoutPaymentInput = {
@@ -479,6 +579,8 @@ export type CourseRegistrationUncheckedCreateWithoutPaymentInput = {
   status?: $Enums.RegistrationStatus
   studentId: string
   courseOfferingId: string
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
+  results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
 }
 
 export type CourseRegistrationCreateOrConnectWithoutPaymentInput = {
@@ -502,6 +604,8 @@ export type CourseRegistrationUpdateWithoutPaymentInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
   courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUpdateManyWithoutCourseRegistrationNestedInput
 }
 
 export type CourseRegistrationUncheckedUpdateWithoutPaymentInput = {
@@ -509,6 +613,60 @@ export type CourseRegistrationUncheckedUpdateWithoutPaymentInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
+}
+
+export type CourseRegistrationCreateWithoutResultsInput = {
+  id?: string
+  status?: $Enums.RegistrationStatus
+  student: Prisma.StudentCreateNestedOneWithoutCourseRegistrationInput
+  courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCourseRegistrationInput
+}
+
+export type CourseRegistrationUncheckedCreateWithoutResultsInput = {
+  id?: string
+  status?: $Enums.RegistrationStatus
+  studentId: string
+  courseOfferingId: string
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
+}
+
+export type CourseRegistrationCreateOrConnectWithoutResultsInput = {
+  where: Prisma.CourseRegistrationWhereUniqueInput
+  create: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutResultsInput, Prisma.CourseRegistrationUncheckedCreateWithoutResultsInput>
+}
+
+export type CourseRegistrationUpsertWithoutResultsInput = {
+  update: Prisma.XOR<Prisma.CourseRegistrationUpdateWithoutResultsInput, Prisma.CourseRegistrationUncheckedUpdateWithoutResultsInput>
+  create: Prisma.XOR<Prisma.CourseRegistrationCreateWithoutResultsInput, Prisma.CourseRegistrationUncheckedCreateWithoutResultsInput>
+  where?: Prisma.CourseRegistrationWhereInput
+}
+
+export type CourseRegistrationUpdateToOneWithWhereWithoutResultsInput = {
+  where?: Prisma.CourseRegistrationWhereInput
+  data: Prisma.XOR<Prisma.CourseRegistrationUpdateWithoutResultsInput, Prisma.CourseRegistrationUncheckedUpdateWithoutResultsInput>
+}
+
+export type CourseRegistrationUpdateWithoutResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
+  courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCourseRegistrationNestedInput
+}
+
+export type CourseRegistrationUncheckedUpdateWithoutResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
 }
 
 export type CourseRegistrationCreateWithoutStudentInput = {
@@ -516,6 +674,8 @@ export type CourseRegistrationCreateWithoutStudentInput = {
   status?: $Enums.RegistrationStatus
   courseOffering: Prisma.CourseOfferingCreateNestedOneWithoutCourseRegistrationInput
   payment?: Prisma.PaymentCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceCreateNestedManyWithoutCourseRegistrationInput
+  results?: Prisma.ResultCreateNestedManyWithoutCourseRegistrationInput
 }
 
 export type CourseRegistrationUncheckedCreateWithoutStudentInput = {
@@ -523,6 +683,8 @@ export type CourseRegistrationUncheckedCreateWithoutStudentInput = {
   status?: $Enums.RegistrationStatus
   courseOfferingId: string
   payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutCourseRegistrationInput
+  attendances?: Prisma.AttendanceUncheckedCreateNestedManyWithoutCourseRegistrationInput
+  results?: Prisma.ResultUncheckedCreateNestedManyWithoutCourseRegistrationInput
 }
 
 export type CourseRegistrationCreateOrConnectWithoutStudentInput = {
@@ -562,6 +724,8 @@ export type CourseRegistrationUpdateWithoutCourseOfferingInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   student?: Prisma.StudentUpdateOneRequiredWithoutCourseRegistrationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUpdateManyWithoutCourseRegistrationNestedInput
 }
 
 export type CourseRegistrationUncheckedUpdateWithoutCourseOfferingInput = {
@@ -569,6 +733,8 @@ export type CourseRegistrationUncheckedUpdateWithoutCourseOfferingInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   studentId?: Prisma.StringFieldUpdateOperationsInput | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
 }
 
 export type CourseRegistrationUncheckedUpdateManyWithoutCourseOfferingInput = {
@@ -588,6 +754,8 @@ export type CourseRegistrationUpdateWithoutStudentInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   courseOffering?: Prisma.CourseOfferingUpdateOneRequiredWithoutCourseRegistrationNestedInput
   payment?: Prisma.PaymentUpdateOneWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUpdateManyWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUpdateManyWithoutCourseRegistrationNestedInput
 }
 
 export type CourseRegistrationUncheckedUpdateWithoutStudentInput = {
@@ -595,6 +763,8 @@ export type CourseRegistrationUncheckedUpdateWithoutStudentInput = {
   status?: Prisma.EnumRegistrationStatusFieldUpdateOperationsInput | $Enums.RegistrationStatus
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
   payment?: Prisma.PaymentUncheckedUpdateOneWithoutCourseRegistrationNestedInput
+  attendances?: Prisma.AttendanceUncheckedUpdateManyWithoutCourseRegistrationNestedInput
+  results?: Prisma.ResultUncheckedUpdateManyWithoutCourseRegistrationNestedInput
 }
 
 export type CourseRegistrationUncheckedUpdateManyWithoutStudentInput = {
@@ -603,6 +773,44 @@ export type CourseRegistrationUncheckedUpdateManyWithoutStudentInput = {
   courseOfferingId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
+
+/**
+ * Count Type CourseRegistrationCountOutputType
+ */
+
+export type CourseRegistrationCountOutputType = {
+  attendances: number
+  results: number
+}
+
+export type CourseRegistrationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  attendances?: boolean | CourseRegistrationCountOutputTypeCountAttendancesArgs
+  results?: boolean | CourseRegistrationCountOutputTypeCountResultsArgs
+}
+
+/**
+ * CourseRegistrationCountOutputType without action
+ */
+export type CourseRegistrationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CourseRegistrationCountOutputType
+   */
+  select?: Prisma.CourseRegistrationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * CourseRegistrationCountOutputType without action
+ */
+export type CourseRegistrationCountOutputTypeCountAttendancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttendanceWhereInput
+}
+
+/**
+ * CourseRegistrationCountOutputType without action
+ */
+export type CourseRegistrationCountOutputTypeCountResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ResultWhereInput
+}
 
 
 export type CourseRegistrationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -613,6 +821,9 @@ export type CourseRegistrationSelect<ExtArgs extends runtime.Types.Extensions.In
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.CourseRegistration$paymentArgs<ExtArgs>
+  attendances?: boolean | Prisma.CourseRegistration$attendancesArgs<ExtArgs>
+  results?: boolean | Prisma.CourseRegistration$resultsArgs<ExtArgs>
+  _count?: boolean | Prisma.CourseRegistrationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["courseRegistration"]>
 
 export type CourseRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -645,6 +856,9 @@ export type CourseRegistrationInclude<ExtArgs extends runtime.Types.Extensions.I
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
   courseOffering?: boolean | Prisma.CourseOfferingDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.CourseRegistration$paymentArgs<ExtArgs>
+  attendances?: boolean | Prisma.CourseRegistration$attendancesArgs<ExtArgs>
+  results?: boolean | Prisma.CourseRegistration$resultsArgs<ExtArgs>
+  _count?: boolean | Prisma.CourseRegistrationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CourseRegistrationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.StudentDefaultArgs<ExtArgs>
@@ -661,6 +875,8 @@ export type $CourseRegistrationPayload<ExtArgs extends runtime.Types.Extensions.
     student: Prisma.$StudentPayload<ExtArgs>
     courseOffering: Prisma.$CourseOfferingPayload<ExtArgs>
     payment: Prisma.$PaymentPayload<ExtArgs> | null
+    attendances: Prisma.$AttendancePayload<ExtArgs>[]
+    results: Prisma.$ResultPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1064,6 +1280,8 @@ export interface Prisma__CourseRegistrationClient<T, Null = never, ExtArgs exten
   student<T extends Prisma.StudentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentClient<runtime.Types.Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   courseOffering<T extends Prisma.CourseOfferingDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseOfferingDefaultArgs<ExtArgs>>): Prisma.Prisma__CourseOfferingClient<runtime.Types.Result.GetResult<Prisma.$CourseOfferingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   payment<T extends Prisma.CourseRegistration$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseRegistration$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  attendances<T extends Prisma.CourseRegistration$attendancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseRegistration$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  results<T extends Prisma.CourseRegistration$resultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CourseRegistration$resultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1514,6 +1732,54 @@ export type CourseRegistration$paymentArgs<ExtArgs extends runtime.Types.Extensi
    */
   include?: Prisma.PaymentInclude<ExtArgs> | null
   where?: Prisma.PaymentWhereInput
+}
+
+/**
+ * CourseRegistration.attendances
+ */
+export type CourseRegistration$attendancesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Attendance
+   */
+  select?: Prisma.AttendanceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Attendance
+   */
+  omit?: Prisma.AttendanceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttendanceInclude<ExtArgs> | null
+  where?: Prisma.AttendanceWhereInput
+  orderBy?: Prisma.AttendanceOrderByWithRelationInput | Prisma.AttendanceOrderByWithRelationInput[]
+  cursor?: Prisma.AttendanceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttendanceScalarFieldEnum | Prisma.AttendanceScalarFieldEnum[]
+}
+
+/**
+ * CourseRegistration.results
+ */
+export type CourseRegistration$resultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Result
+   */
+  select?: Prisma.ResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Result
+   */
+  omit?: Prisma.ResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ResultInclude<ExtArgs> | null
+  where?: Prisma.ResultWhereInput
+  orderBy?: Prisma.ResultOrderByWithRelationInput | Prisma.ResultOrderByWithRelationInput[]
+  cursor?: Prisma.ResultWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ResultScalarFieldEnum | Prisma.ResultScalarFieldEnum[]
 }
 
 /**

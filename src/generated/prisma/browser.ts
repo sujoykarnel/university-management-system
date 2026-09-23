@@ -18,6 +18,11 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel
+/**
  * Model Course
  * 
  */
@@ -38,6 +43,11 @@ export type CourseRegistration = Prisma.CourseRegistrationModel
  */
 export type Department = Prisma.DepartmentModel
 /**
+ * Model Exam
+ * 
+ */
+export type Exam = Prisma.ExamModel
+/**
  * Model Instructor
  * 
  */
@@ -52,6 +62,11 @@ export type Payment = Prisma.PaymentModel
  * 
  */
 export type Program = Prisma.ProgramModel
+/**
+ * Model Result
+ * 
+ */
+export type Result = Prisma.ResultModel
 /**
  * Model Semester
  * 

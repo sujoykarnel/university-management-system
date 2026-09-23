@@ -1,0 +1,21 @@
+model Exam {
+  id String @id @default(uuid())
+  type      ExamType
+  toalMarks Float
+  examDate  DateTime
+
+  courseOfferingId String
+  courseOffering   CourseOffering @relation(fields: [courseOfferingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  results Result[]
+
+  isDelete  Boolean   @default(false)
+  deletedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseOfferingId], name: "idx_courseOfferingId")
+  @@index([examDate])
+  @@map("exams")
+}

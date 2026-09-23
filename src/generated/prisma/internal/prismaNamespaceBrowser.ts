@@ -51,13 +51,16 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Attendance: 'Attendance',
   Course: 'Course',
   CourseOffering: 'CourseOffering',
   CourseRegistration: 'CourseRegistration',
   Department: 'Department',
+  Exam: 'Exam',
   Instructor: 'Instructor',
   Payment: 'Payment',
   Program: 'Program',
+  Result: 'Result',
   Semester: 'Semester',
   Student: 'Student',
   University: 'University',
@@ -78,6 +81,21 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const AttendanceScalarFieldEnum = {
+  id: 'id',
+  courseRegistrationId: 'courseRegistrationId',
+  classDate: 'classDate',
+  status: 'status',
+  remarks: 'remarks',
+  isDelete: 'isDelete',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
 
 
 export const CourseScalarFieldEnum = {
@@ -135,6 +153,21 @@ export const DepartmentScalarFieldEnum = {
 } as const
 
 export type DepartmentScalarFieldEnum = (typeof DepartmentScalarFieldEnum)[keyof typeof DepartmentScalarFieldEnum]
+
+
+export const ExamScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  toalMarks: 'toalMarks',
+  examDate: 'examDate',
+  courseOfferingId: 'courseOfferingId',
+  isDelete: 'isDelete',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExamScalarFieldEnum = (typeof ExamScalarFieldEnum)[keyof typeof ExamScalarFieldEnum]
 
 
 export const InstructorScalarFieldEnum = {
@@ -196,6 +229,24 @@ export const ProgramScalarFieldEnum = {
 export type ProgramScalarFieldEnum = (typeof ProgramScalarFieldEnum)[keyof typeof ProgramScalarFieldEnum]
 
 
+export const ResultScalarFieldEnum = {
+  id: 'id',
+  examId: 'examId',
+  courseRegistrationId: 'courseRegistrationId',
+  marks: 'marks',
+  grade: 'grade',
+  gradePoint: 'gradePoint',
+  status: 'status',
+  publishedAt: 'publishedAt',
+  isDelete: 'isDelete',
+  deletedAt: 'deletedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ResultScalarFieldEnum = (typeof ResultScalarFieldEnum)[keyof typeof ResultScalarFieldEnum]
+
+
 export const SemesterScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -218,7 +269,6 @@ export const StudentScalarFieldEnum = {
   email: 'email',
   address: 'address',
   userId: 'userId',
-  programId: 'programId',
   admistionYear: 'admistionYear',
   currentSemester: 'currentSemester',
   isActive: 'isActive',

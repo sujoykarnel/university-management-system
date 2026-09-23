@@ -562,10 +562,6 @@ export type InstructorUncheckedUpdateManyWithoutDepartmentNestedInput = {
   deleteMany?: Prisma.InstructorScalarWhereInput | Prisma.InstructorScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type InstructorCreateNestedOneWithoutUserInput = {
   create?: Prisma.XOR<Prisma.InstructorCreateWithoutUserInput, Prisma.InstructorUncheckedCreateWithoutUserInput>
   connectOrCreate?: Prisma.InstructorCreateOrConnectWithoutUserInput

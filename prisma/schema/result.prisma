@@ -1,0 +1,31 @@
+model Result {
+  id String @id @default(uuid())
+
+
+  examId String
+  exam   Exam   @relation(fields: [examId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  courseRegistrationId String
+  courseRegistration   CourseRegistration @relation(fields: [courseRegistrationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  marks      Float
+  grade      String
+  gradePoint Float
+
+  status resultStatus @default(DRAFT)
+
+  publishedAt DateTime?
+
+  isDelete  Boolean   @default(false)
+  deletedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([examId, courseRegistrationId])
+  @@index([examId])
+  @@index([courseRegistrationId])
+
+  @@map("results")
+
+}

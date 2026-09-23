@@ -1,5 +1,5 @@
 model CourseRegistration {
-  id String @id @default(uuid())
+  id     String             @id @default(uuid())
   status RegistrationStatus @default(PENDING)
 
   studentId String
@@ -8,7 +8,10 @@ model CourseRegistration {
   courseOfferingId String
   courseOffering   CourseOffering @relation(fields: [courseOfferingId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  payment Payment?
+  payment     Payment?
+  attendances Attendance[]
+  results Result[]
+
 
   @@unique([studentId, courseOfferingId], name: "unique_registration_studentId_course")
   @@index([studentId, courseOfferingId], name: "idx_registration_studentId_course")

@@ -7,8 +7,7 @@ model Student {
   userId String @unique
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  programId String?
-  program   Program? @relation(fields: [programId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
 
   courseRegistration CourseRegistration[]
 

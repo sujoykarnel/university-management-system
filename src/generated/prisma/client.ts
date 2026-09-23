@@ -31,8 +31,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Courses
- * const courses = await prisma.course.findMany()
+ * // Fetch zero or more Attendances
+ * const attendances = await prisma.attendance.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -41,6 +41,11 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
+/**
+ * Model Attendance
+ * 
+ */
+export type Attendance = Prisma.AttendanceModel
 /**
  * Model Course
  * 
@@ -62,6 +67,11 @@ export type CourseRegistration = Prisma.CourseRegistrationModel
  */
 export type Department = Prisma.DepartmentModel
 /**
+ * Model Exam
+ * 
+ */
+export type Exam = Prisma.ExamModel
+/**
  * Model Instructor
  * 
  */
@@ -76,6 +86,11 @@ export type Payment = Prisma.PaymentModel
  * 
  */
 export type Program = Prisma.ProgramModel
+/**
+ * Model Result
+ * 
+ */
+export type Result = Prisma.ResultModel
 /**
  * Model Semester
  * 

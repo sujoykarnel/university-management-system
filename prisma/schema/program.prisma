@@ -8,7 +8,6 @@ model Program {
   departmentId String
   department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
-  students Student[]
   courses  Course[]
 
   isDelete  Boolean   @default(false)

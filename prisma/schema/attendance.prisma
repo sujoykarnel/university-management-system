@@ -1,0 +1,22 @@
+model Attendance {
+  id String @id @default(uuid())
+
+  courseRegistrationId String
+  courseRegistration   CourseRegistration @relation(fields: [courseRegistrationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  classDate DateTime
+  status    AttendanceStatus
+
+  remarks String?
+
+  isDelete  Boolean   @default(false)
+  deletedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([courseRegistrationId, classDate])
+  @@index([courseRegistrationId])
+  @@index([classDate])
+  @@map("attendances")
+}

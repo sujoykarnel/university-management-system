@@ -8,13 +8,16 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Attendance'
 export type * from './models/Course'
 export type * from './models/CourseOffering'
 export type * from './models/CourseRegistration'
 export type * from './models/Department'
+export type * from './models/Exam'
 export type * from './models/Instructor'
 export type * from './models/Payment'
 export type * from './models/Program'
+export type * from './models/Result'
 export type * from './models/Semester'
 export type * from './models/Student'
 export type * from './models/University'
